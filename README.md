@@ -34,7 +34,7 @@ Teachmeボタンはクリック数を数え、クリック数を表示させる�
 ​
 ## 設計書
 <!--テーマを設定・提出する時点では不要です-->
-後ほど作成予定
+・ [フレームワーク](https://app.diagrams.net/#G1G-C2rlRHjPZZEruEKfvkTdEyPQOY5rdC)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
