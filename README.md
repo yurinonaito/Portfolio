@@ -26,7 +26,9 @@ Teachmeボタンはクリック数を数え、クリック数を表示させる�
 ### 主な利用シーン
 <!--どのような時に使うのかの状況を記載すること-->
 ・スクールを卒業後、転職先に同期がいなくて孤独を感じている時
+
 ・周りの先輩に追いつきたくて毎日頑張っているけど心が折れそうな時
+
 ・励まし合ったり高め合える仲間が欲しい時
 
 新しくwebシステムを作成したけど誰かに見て欲しいな、他のメンバーはどんなシステムを作っているんだろう？
@@ -34,7 +36,10 @@ Teachmeボタンはクリック数を数え、クリック数を表示させる�
 ​
 ## 設計書
 <!--テーマを設定・提出する時点では不要です-->
-・ [フレームワーク](https://app.diagrams.net/#G1G-C2rlRHjPZZEruEKfvkTdEyPQOY5rdC)
+・ [ワイヤーフレーム](https://app.diagrams.net/#G1G-C2rlRHjPZZEruEKfvkTdEyPQOY5rdC)
+・ [画面遷移図](https://app.diagrams.net/?libs=general;uml#G1FilXFqkVZArgrZnUhXdEOdp39zZQLmer)
+・ [ER図](https://app.diagrams.net/?libs=general;er#G1H3hNbR2XaqtQugl8NcoI42hLX2N5WLyr)
+・ [WBS](https://docs.google.com/spreadsheets/d/1rJwpEj1YezAJ2rtqRx_8eUVOkVUzbx1VATnMbRa9z28/edit#gid=1773513600)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
