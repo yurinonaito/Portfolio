@@ -37,9 +37,13 @@ Teachmeボタンはクリック数を数え、クリック数を表示させる�
 ## 設計書
 <!--テーマを設定・提出する時点では不要です-->
 ・ [ワイヤーフレーム](https://app.diagrams.net/#G1G-C2rlRHjPZZEruEKfvkTdEyPQOY5rdC)
+
 ・ [画面遷移図](https://app.diagrams.net/?libs=general;uml#G1FilXFqkVZArgrZnUhXdEOdp39zZQLmer)
+
 ・ [ER図](https://app.diagrams.net/?libs=general;er#G1H3hNbR2XaqtQugl8NcoI42hLX2N5WLyr)
+
 ・ [WBS](https://docs.google.com/spreadsheets/d/1rJwpEj1YezAJ2rtqRx_8eUVOkVUzbx1VATnMbRa9z28/edit#gid=1773513600)
+
 ​
 ## 開発環境
 - OS：Linux(CentOS)
