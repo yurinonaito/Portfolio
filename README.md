@@ -32,6 +32,7 @@ Teachmeボタンはクリック数を数え、クリック数を表示させる�
 ・励まし合ったり高め合える仲間が欲しい時
 
 新しくwebシステムを作成したけど誰かに見て欲しいな、他のメンバーはどんなシステムを作っているんだろう？
+
 心の支えとして、またチーム開発のような高め合える場として気軽に集まれるSNSであってほしいです。
 ​
 ## 設計書
@@ -41,6 +42,10 @@ Teachmeボタンはクリック数を数え、クリック数を表示させる�
 ・ [画面遷移図](https://app.diagrams.net/?libs=general;uml#G1FilXFqkVZArgrZnUhXdEOdp39zZQLmer)
 
 ・ [ER図](https://app.diagrams.net/?libs=general;er#G1H3hNbR2XaqtQugl8NcoI42hLX2N5WLyr)
+
+・ [テーブル定義書](https://docs.google.com/spreadsheets/d/1yMZ3v5YjbeVyztLL1bqhB7uJXjhovdDR/edit#gid=136342688)
+
+・ [詳細設計書](https://docs.google.com/spreadsheets/d/1wYLSzkNTwtFqXOw_PyupzYXhlE5wV3ROCMQiD2U8uiU/edit#gid=549108681)
 
 ・ [WBS](https://docs.google.com/spreadsheets/d/1rJwpEj1YezAJ2rtqRx_8eUVOkVUzbx1VATnMbRa9z28/edit#gid=1773513600)
 
