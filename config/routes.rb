@@ -1,15 +1,22 @@
 Rails.application.routes.draw do
-  get 'group_rooms/show'
-  get 'group_rooms/index'
-  get 'rooms/show'
-  get 'posts/index'
-  get 'posts/show'
-  get 'posts/edit'
-  get 'homes/top'
-  get 'homes/about'
-  get 'users/show'
-  get 'users/edit'
-  get 'users/confirm_withdraw'
+  root to: "homes#top"
   devise_for :users
+  get 'homes/about'
+  
+  get 'users/mypage' => 'users#show'
+  get 'users/information/edit' => 'users#edit'
+  patch 'users/information' => 'users#update'
+  get 'users/confirm_withdraw' => 'users#confirm_withdraw'
+  patch 'users/withdraw' => 'users#withdraw'
+  
+  resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  resources :favorites, only: [:create, :destroy]
+  resources :comments, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
+  resources :chats, only: [:create]
+  resources :rooms, only: [:create, :show]
+  resources :group_chats, only: [:create]
+  resources :group_rooms, only: [:index, :create, :show]
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
