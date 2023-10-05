@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Portfolio</title>
+    <title>Teach me!</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,6 +13,46 @@
   </head>
 
   <body>
+  <body class ="d-flex flex-column vh-100">
+    <header class="header p-4">
+      <nav class="navbar-nav">
+        <div class="container">
+          <div class="row">
+            <a class="navbar-brand mr-auto" href="<%= homes_about_path %>"><span><%= image_tag 'TeachmeLogo.png', size:'150x150'%></span></a>
+          </div>
+        </div>
+      <div class="row">
+        <ul class="navbar-nav ml-auto d-flex flex-row">
+          <li class="nav-item">
+            <%= link_to "Login", user_session_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Signup", new_user_registration_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Mypage", users_mypage_path %>
+          </li>
+        </ul>
+      </div>
+      </nav>
+    </header>
+    <main class="main">
     <%= yield %>
+    </main>
+    <div class="footer">
+    <footer>
+      <div class="container">
+       <div class="row justify-content-cencer p-5">
+        <div class="col text-align:right">
+         <p>Teach me !<br>
+         <i class="fa-brands fa-instagram"></i> &ensp;<i class="fa-solid fa-envelope"></i> &ensp;<i class="fa-brands fa-twitter"></i><br>
+            About<br>
+            Contact<br>
+            ©CopyRight Teach me !</p>
+        </div>
+       </div>
+      </div>
+    </footer>
+    </div>
   </body>
 </html>
