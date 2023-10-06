@@ -19,8 +19,8 @@ class User < ApplicationRecord
   
   def get_icon_image(width, height)
     unless image.attached?
-      file_path = Rails.root.join('app/assets/images/NoImage.jpg')
-      image.attach(io: File.open(file_path), filename: 'NoImage.jpg', content_type: 'image/jpg')
+      file_path = Rails.root.join('app/assets/images/NoImage.png')
+      image.attach(io: File.open(file_path), filename: 'NoImage.png', content_type: 'image/png')
     end
       image.variant(resize_to_limit: [width, height]).processed
   end

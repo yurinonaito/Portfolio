@@ -1,2 +1,28 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+  <div class="row m-3">
+    <div class="col p-3">
+      <h1>ユーザー詳細</h1>
+<!-- ユーザーの詳細 -->
+<div>
+  <p><strong>Profile</strong></p>
+  <p>name：<%= @user.user_name %></p>
+  <p>user_id：<%= @user.id %></p>
+  <%= link_to "", users_information_edit_path, class: "fa-solid fa-gear" %>
+  <%= link_to "", root_path, class: "fa-solid fa-heart" %>
+  <%= link_to "", rooms_path, class: "fa-solid fa-envelope" %>
+  <%= link_to "", new_post_path, class: "fa-solid fa-pen-to-square" %>
+  
+  <!--<#%= image_tag @user.get_icon_image(100,100) %>-->
+</div>
+
+ <!--ユーザーの投稿一覧 -->
+<% @posts.each do |post| %>
+<div>
+  <%= link_to post_path(post.id) do %>
+    <%= image_tag post.get_image(600,600) %>
+  <% end %>
+</div>
+<% end %>
+    </div>
+  </div>
+</div>

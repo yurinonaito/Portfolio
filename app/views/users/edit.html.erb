@@ -1,2 +1,72 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="container">
+  <div class="row m-3">
+    <div class="col p-3">
+      <h1>ユーザー情報編集</h1>
+    </div>
+  </div>
+  <div class="row m-3">
+    <div class="col-sm-11 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <%= form_with model: @user, url: users_information_path, method: :patch do |f| %>
+        <%= render "devise/shared/error_messages", resource: @user %>
+
+          <div class="form-group">
+            <label for="name">名前</label>
+            <div class="row">
+              <div class="col">
+                <%= f.text_field :last_name, class: "form-control block", id: "user_last_name" %>
+              </div>
+              <div class="col">
+                <%= f.text_field :first_name, class: "form-control block", id: "user_first_name" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="user_name">ユーザーネーム</label>
+            <div class="row">
+              <div class="col">
+                <%= f.text_field :user_name, class: "form-control block", id: "user_name" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="icon_image">アイコン</label>
+            <div class="row">
+              <div class="col">
+                <%= f.file_field :icon_image, accept: "image/*", class: "form-control block", id: "icon_image" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="telephone_number">電話番号</label>
+            <div class="row">
+              <div class="col">
+                <%= f.text_field :telephone_number, class: "form-control block", id: "telephone_number" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">メールアドレス</label>
+            <div class="row">
+              <div class="col">
+                <%= f.email_field :email, class: "form-control block", id: "email" %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row mb-4">
+            <div class="col mt-2 mr-1">
+              <%= f.submit "編集内容を保存" %>
+            </div>
+
+            <div class="col mt-2 mr-1">
+              <%= link_to '退会する', users_confirm_withdraw_path %>
+            </div>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,23 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Post show</h1>
+        <div><%= image_tag @post.get_image(550,550) %></div>
+      </div>
+
+      <div class="col">
+        <p>投稿文：<%= @post.caption %></p>
+        <p><%= link_to @post.post_url do %>
+  　　　　<span>Webサイトを見る</span></p><% end %>
+        <p>ユーザーネーム：<%= @post.user.user_name %></p>
+        <%= link_to @post.code_url, class: "button-8", role: "button" do %>
+  　　　　<span>Teachme!</span>
+　　　　<% end %>
+        <p><%= link_to "編集する", edit_post_path %></p>
+        <% if @post.user == current_user %>
+    <%= link_to "削除", post_path(@post), method: :delete %>
+  <% end %>
+      </div>
+    </div>
+  </div>
+</div>

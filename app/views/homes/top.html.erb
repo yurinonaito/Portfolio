@@ -1,5 +1,54 @@
 <div class="container">
   <div class="row my-3">
     <div class="col">
-      <h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+      <script src="js/top.js"></script>
+      <h1 class="title">
+       <span>T</span>
+       <span>E</span>
+       <span>A</span>
+       <span>C</span>
+       <span>H</span>
+       <span>&nbsp;</span>
+       <span>M</span>
+       <span>E</span>
+      <span>!</span>
+      </h1>
+<div class="row">
+  <div class="col">
+    <h6 class="border-bottom"><strong>new!</strong></h6>
+  </div>
+</div>
+    <!--<div class="row">-->
+    <!--  <div class="col mr-1">-->
+        <!--新着投稿。posts controllerにstrong parameter記載されていれば動くはず-->
+    <!--    <div class="new_posts_container">-->
+    <!--     <#% @posts.each do |post| %>-->
+    <!--      <div class="new_posts_user">-->
+    <!--        <span class="under"><#%= link_to item_path(item) do %><#%= image_tag post.get_icon_image(60,60) %><#% end %></span>-->
+    <!--      </div>-->
+    <!--     <#% end %>-->
+    <!--    </div>-->
+    <!--  </div>-->
+    <!--</div>-->
+    
+    
+    <div class="row">
+      <div class="col mr-1">
+        <div class="menu_container">
+          <a href="<%= homes_about_path %>"><span><%= image_tag 'Search.png', size:'250x250'%></span></a>
+          <a href="<%= homes_about_path %>"><span><%= image_tag 'Favorite.png', size:'250x250'%></span></a>
+          <a href="<%= group_rooms_path %>"><span><%= image_tag 'Groupchatroom.png', size:'250x250'%></span></a>
+          <a href="<%= new_post_path %>"><span><%= image_tag 'Newpost.png', size:'250x250'%></span></a>
+        </div>
+      </div>
+    </div>
+    
+    <!--スライドショーを入れる予定-->
+    
+    
+     <div class="d-flex my-3 justify-content-end">
+       <%= link_to "more ▷▷", posts_path %>
+     </div>
+    </div>
+  </div>
+</div>
