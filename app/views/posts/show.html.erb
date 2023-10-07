@@ -8,11 +8,25 @@
       <div class="col">
         <p>投稿文：<%= @post.caption %></p>
         <p><%= link_to @post.post_url do %>
-  　　　　<span>Webサイトを見る</span></p><% end %>
+        <span>Webサイトを見る</span></p><% end %>
         <p>ユーザーネーム：<%= @post.user.user_name %></p>
+        
+        <% if @post.favorite?(current_user) %>
+          <%= link_to favorite_path(@post.id), method: :delete do %>
+          <span style="color:red;">❤︎</span>
+          <% end %>
+        <% else %>
+          <%= link_to favorites_path(@post.id), method: :post do %>
+          <span>❤︎</span>
+          <% end %>
+        <% end %>
+        <p>コメント数： <%= @post.comments.count %></p>
+        <%= render "comments/index", post: @post %>
+        <%= render "comments/form", post: @post, comment: @comment %>
+
         <%= link_to @post.code_url, class: "button-8", role: "button" do %>
-  　　　　<span>Teachme!</span>
-　　　　<% end %>
+        <span>Teachme!</span>
+        <% end %>
         <p><%= link_to "編集する", edit_post_path %></p>
         <% if @post.user == current_user %>
     <%= link_to "削除", post_path(@post), method: :delete %>

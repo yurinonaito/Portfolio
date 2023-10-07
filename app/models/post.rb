@@ -14,4 +14,11 @@ class Post < ApplicationRecord
       image.variant(resize_to_limit: [width, height]).processed
   end
   
+    #「ログイン中のユーザーがその投稿に対していいねをしているか」を判断する
+  def favorite?(user)
+  favorites.where(user_id: user.id).exists?
+  end                 #(current_user)のidと等しいuser_idを持つレコードは、favoritesテーブル内に存在するか？」をexists?を用いて判断
+                      #一致するレコードが存在しない＝「まだいいねしていない→createアクションへ」
+                      #一致するレコードが存在する　＝「すでにいいね済み→destroyアクションへ」と分岐
+  
 end
