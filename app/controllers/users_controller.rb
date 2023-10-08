@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
 
   def show
-    @user = current_user
+    @user=User.find(params[:id])
     @posts = @user.posts
+    
+    # @currentUserEntry=Entry.where(user_id: current_user.id)
+    # @userEntry=Entry.where(user_id: @users.id)
   end
 
   def edit

@@ -9,14 +9,15 @@
         <p>投稿文：<%= @post.caption %></p>
         <p><%= link_to @post.post_url do %>
         <span>Webサイトを見る</span></p><% end %>
-        <p>ユーザーネーム：<%= @post.user.user_name %></p>
+
+        <%= link_to @post.user.user_name, user_path(@post.user.id) %>
         
         <% if @post.favorite?(current_user) %>
-          <%= link_to favorite_path(@post.id), method: :delete do %>
+          <%= link_to post_favorites_path(@post.id), method: :delete do %>
           <span style="color:red;">❤︎</span>
           <% end %>
         <% else %>
-          <%= link_to favorites_path(@post.id), method: :post do %>
+          <%= link_to post_favorites_path(@post.id), method: :post do %>
           <span>❤︎</span>
           <% end %>
         <% end %>

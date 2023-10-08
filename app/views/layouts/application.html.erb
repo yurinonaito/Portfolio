@@ -30,7 +30,7 @@
             <%= link_to "Home", root_path %>
           </li>
           <li class="nav-item">
-            <%= link_to "My Page", users_mypage_path %>
+            <%= link_to "My Page", user_path(current_user.id) %>
           </li>
           <li class="nav-item">
             <%= link_to "All Post", posts_path %>

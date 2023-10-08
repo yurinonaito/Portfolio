@@ -12,21 +12,31 @@ Rails.application.routes.draw do
   
   get 'homes/about'
 
-  
-  get 'users/mypage' => 'users#show'
   get 'users/information/edit' => 'users#edit'
   patch 'users/information' => 'users#update'
   get 'users/confirm_withdraw' => 'users#confirm_withdraw'
   patch 'users/withdraw' => 'users#withdraw'
   
-  resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-  resources :favorites, only: [:create, :destroy]
-  resources :comments, only: [:create, :destroy]
-  resources :relationships, only: [:create, :destroy]
+  resources :users, only:[:show, :edit, :index, :update] do
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+  end
+  
+    resources :chats, only: [:create]
+    resources :rooms, only: [:create, :show]
+    resources :group_chats, only: [:create]
+    resources :group_rooms, only: [:index, :create, :show]
+  
+  
+  resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+   resource :favorites, only: [:create, :destroy]
+   resources :comments, only: [:create, :destroy]
+  end
+  
   resources :chats, only: [:create]
   resources :rooms, only: [:create, :show]
   resources :group_chats, only: [:create]
   resources :group_rooms, only: [:index, :create, :show]
-
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
 end
