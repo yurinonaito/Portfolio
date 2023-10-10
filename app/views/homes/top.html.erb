@@ -45,18 +45,15 @@
     </div>
     
     <!--スライドショーを入れる予定-->
-    
-    <!-- Sliderを包むコンテナ要素 -->
-    <div class="slider">
-     <div class="slider-inner">
+    <ul class="slider">
+     <li class="slider-inner">
        <% @posts.each do |post| %>
-        <div class="slider-item">
-          <%= image_tag post.get_image(700, 700), class: "newpost_image" %>
-        </div>
+        <li class="slider-item">
+          <%= image_tag post.get_image(400,400), class: "newpost_image" %>
+        </li>
        <% end %>
-    </div>
-   </div>
-    
+    </li>
+   </ul>
 
      <div class="d-flex my-3 justify-content-end">
        <%= link_to "more ▷▷", posts_path %>

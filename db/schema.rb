@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_05_031650) do
+ActiveRecord::Schema.define(version: 2023_10_10_073029) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -104,6 +104,22 @@ ActiveRecord::Schema.define(version: 2023_10_05_031650) do
     t.index ["user_id"], name: "index_group_rooms_on_user_id"
   end
 
+  create_table "hashtags", force: :cascade do |t|
+    t.string "hashname"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hashname"], name: "index_hashtags_on_hashname", unique: true
+  end
+
+  create_table "post_hashtag_relations", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "hashtag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hashtag_id"], name: "index_post_hashtag_relations_on_hashtag_id"
+    t.index ["post_id"], name: "index_post_hashtag_relations_on_post_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.text "caption", null: false
@@ -159,6 +175,8 @@ ActiveRecord::Schema.define(version: 2023_10_05_031650) do
   add_foreign_key "group_entries", "group_rooms"
   add_foreign_key "group_entries", "users"
   add_foreign_key "group_rooms", "users"
+  add_foreign_key "post_hashtag_relations", "hashtags"
+  add_foreign_key "post_hashtag_relations", "posts"
   add_foreign_key "posts", "users"
   add_foreign_key "rooms", "users"
 end

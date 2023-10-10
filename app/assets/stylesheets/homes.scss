@@ -67,42 +67,53 @@ h1{
 }
 
 
-.slider {
-  width: 100%;
-　margin: 0 auto;
-}
-.slider-item {
-  width: 30%;
-  float: left;
-}
-.newpost_image{
-  width: 100%;
-}
-.slider-inner {
-  width: 100%;
-  animation: slider 15s infinite ease;
+// .slider {
+//   width: 100%;
+// 　margin: 0 auto;
+// }
+// .slider-item {
+//   width: 30%;
+//   float: left;
+// }
+// .newpost_image{
+//   width: 100%;
+// }
+// .slider-inner {
+//   width: 100%;
+//   animation: slider 15s infinite ease;
+// }
+
+// @keyframes slider {
+// 	0% {
+// 	transform: translateX(0);
+// 	}
+// 	15% {
+// 	transform: translateX(-300px);
+// 	}
+// 	33% {
+// 	transform: translateX(-500px);
+// 	}
+// 	50% {
+// 	transform: translateX(-700px);
+// 	}
+// 	66% {
+// 	transform: translateX(-900px);
+// 	}
+// 	85% {
+// 	transform: translateX(-700px);
+// 	}
+// 	100% {
+// 	transform: translateX(0);
+// 	}
+// }
+
+.newpost_image {
+    width:100%;/*スライダー内の画像を横幅100%に*/
+    height:auto;
 }
 
-@keyframes slider {
-	0% {
-	transform: translateX(0);
-	}
-	15% {
-	transform: translateX(-300px);
-	}
-	33% {
-	transform: translateX(-500px);
-	}
-	50% {
-	transform: translateX(-700px);
-	}
-	66% {
-	transform: translateX(-900px);
-	}
-	85% {
-	transform: translateX(-700px);
-	}
-	100% {
-	transform: translateX(0);
-	}
+/*slickのJSで書かれるタグ内、スライド左右の余白調整*/
+
+.slider .slick-slide {
+    margin:0 10px;/*スライド左右の余白調整*/
 }

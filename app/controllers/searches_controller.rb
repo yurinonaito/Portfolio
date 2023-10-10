@@ -9,6 +9,16 @@ class SearchesController < ApplicationController
     else
        @posts = Post.where("caption LIKE ?", "%#{params[:word]}%")
     end
+  
+    
+    if params[:q].empty?
+      @post = Post.all
+      @tag ="なし"
+    else
+      @tag = params[:q]
+      hashtag = Hashtag.find_by(hashname: params[:q])
+      @posts = hashtag ? hashtag.posts : []
+    end
   end
   
 end

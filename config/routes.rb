@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   patch 'users/withdraw' => 'users#withdraw'
   
   get 'searches/search'
+  get '/post/hashtag/:name', to: "posts#hashtag"
   
   resources :users, only:[:show, :edit, :index, :update] do
     resource :relationships, only: [:create, :destroy]
