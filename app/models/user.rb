@@ -25,33 +25,68 @@ class User < ApplicationRecord
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
-      # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
+      user.last_name = "ゲスト"
+      user.first_name ="ログイン"
+      user.user_name ="gest"
+      user.telephone_number ="090000000000"
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+      # 例えば user_name を入力必須としているならば， user.user_name = "ゲスト" なども必要
     end
   end
   
   def get_icon_image(width, height)
     unless icon_image.attached?
-      file_path = Rails.root.join('app/assets/images/NoImage.png')
-      icon_image.attach(io: File.open(file_path), filename: 'NoImage.png', content_type: 'image/png')
+      file_path = Rails.root.join('app/assets/images/NoImage.jpg')
+      icon_image.attach(io: File.open(file_path), filename: 'NoImage.jpg', content_type: 'image/jpg')
     end
       icon_image.variant(resize_to_limit: [width, height]).processed
   end
   
+  # ユーザーが特定のユーザーにフォローされているかどうかを確認するメソッド
+  def followed_by?(other_user)
+    other_user.following?(self)
+  end
   
   # 指定したユーザーをフォローする
   def follow(user)
-    active_relationships.create!(followed_id: user.id)
+    active_relationships.create(followed_id: user.id)
   end
-  
   # 指定したユーザーのフォローを解除する
   def unfollow(user)
     active_relationships.find_by(followed_id: user.id).destroy
   end
-  
   # 指定したユーザーをフォローしているかどうかを判定
   def following?(user)
     followings.include?(user)
+  end
+  
+  # 検索方法分岐
+  def self.search(search, word)
+    if search == "perfect_match"
+      where("user_name LIKE ?", word)
+    elsif search == "forward_match"
+      where("user_name LIKE ?", "#{word}%")
+    elsif search == "backward_match"
+      where("user_name LIKE ?", "%#{word}")
+    elsif search == "partial_match"
+      where("user_name LIKE ?", "%#{word}%")
+    else
+      all
+    end
+  end
+  
+  def self.looks(search, word)
+    if search == "perfect_match"
+      where("user_name LIKE ?", "#{word}")
+    elsif search == "forward_match"
+      where("user_name LIKE ?", "#{word}%")
+    elsif search == "backward_match"
+      where("user_name LIKE ?", "%#{word}")
+    elsif search == "partial_match"
+      where("user_name LIKE ?", "%#{word}%")
+    else
+      all
+    end
   end
   
 end

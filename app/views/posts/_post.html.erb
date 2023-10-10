@@ -1,0 +1,9 @@
+<% if @post %>
+  <%= link_to image_tag @post.get_image(250, 250), post_path(@post) %>
+  <%= link_to @post.user.user_name, user_path(@post.user) %>
+  <i class="fa-solid fa-heart"></i>
+  <%= @post.favorites.length %>
+  <%= link_to @post.caption, post_path(@post) %>
+<% else %>
+ <p>お気に入りにされた投稿がありません。</p>
+<% end %>

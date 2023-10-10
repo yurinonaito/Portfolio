@@ -3,46 +3,60 @@
     <div class="col p-3">
       <h1>ユーザー詳細</h1>
 <!-- ユーザーの詳細 -->
-<div>
-  <p><strong>Profile</strong></p>
-  <p>name：<%= @user.user_name %></p>
-  <p>user_id：<%= @user.id %></p>
-  <%= link_to "", users_information_edit_path, class: "fa-solid fa-gear" %>
-  <%= link_to "", root_path, class: "fa-solid fa-heart" %>
-  <%= link_to "", rooms_path, class: "fa-solid fa-envelope" %>
-  <%= link_to "", new_post_path, class: "fa-solid fa-pen-to-square" %>
+<div class="row">
+  <ul>
+    <li>
+       <strong>Profile</strong><br>
+       <%= image_tag @user.get_icon_image(100,100),class:"icon" %>
+    </li>
+    <li>
+        name：<%= @user.user_name %><br>
+        user_id：<%= @user.id %>
+    </li>
+    <li>
+        <%= link_to "", users_information_edit_path, class: "fa-solid fa-gear" %>
+        <%= link_to "", favorites_user_path(@user), class: "fa-solid fa-heart" %>
+        <%= link_to "", room_path(@user), class: "fa-solid fa-envelope" %>
+        <%= link_to "", new_post_path, class: "fa-solid fa-pen-to-square" %>
+    </li>
+    <li>
+        follow: <%= @user.followings.count %><br>
+        follower: <%= @user.followers.count %>
+    </li>
+    <li>
+        <%= render "relationships/btn", user: @user, options: { class: "follow-link" } %>
+    </li>
   
-  <!--<p>フォロー数: <#%= @user.followings.count %></p>-->
-  <!--<p>フォロワー数: <#%= @user.followers.count %></p>-->
-  <p><%= render "relationships/btn", user: @user, options: { class: "follow-link" } %></p>
-  
-  <%= image_tag @user.get_icon_image(100,100),class:"icon" %>
-  
-<!--<#% unless @user.id == current_user.id %>-->
-<!--  <#% if (current_user.followed_by? @user) && (@user.followed_by? current_user)  %>-->
-<!--    <#% if @isRoom == true %>-->
-<!--  <p class="user-show-room"><a href="/rooms/<#%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a>-->
-<!--    <#% else %>-->
-<!--      <#%= form_for @room do |f| %>-->
-<!--      <#%= fields_for @entry do |e| %>-->
-<!--      <#%= e.hidden_field :user_id, value: @user.id %>-->
-<!--      <#% end %>-->
-<!--      <#%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"%>-->
-<!--      <#% end %>-->
-<!--    <#% end %>-->
-<!--  <#% end %>-->
-<!--<#% end %>-->
+  <li>
+  <% unless @user.id == current_user.id %>
+    <% if (current_user.followed_by? @user) && (@user.followed_by? current_user)  %>
+      <% if @isRoom == true %>
+      <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a>
+      <% else %>
+      <%= form_with model: @room, url: rooms_path, method: :post do |f| %>
+        <%= fields_for @entry do |entry| %>
+        <%= entry.hidden_field :user_id, value: @user.id %>
+        <% end %>
+  <%= f.submit "DM", class:"btn btn-primary btn-lg user-show-chat"%>
+      <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  </li>
+  </ul>
   
 </div>
 
+<div class="row">
  <!--ユーザーの投稿一覧 -->
 <% @posts.each do |post| %>
 <div>
   <%= link_to post_path(post.id) do %>
-    <%= image_tag post.get_image(600,600) %>
+    <%= image_tag post.get_image(350,350) %>
   <% end %>
 </div>
 <% end %>
+</div>
     </div>
   </div>
 </div>

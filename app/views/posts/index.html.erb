@@ -1,14 +1,18 @@
+<div class="container">
+  <div class="row m-3">
+    <div class="col p-3">
 <h1>All users time line</h1>
 
 
       <div class="row">
         <% @posts.each do |post| %>
-          <div class="col-3">
             <%= link_to post_path(post.id) do %>
             <table>
-              <tr><td><%= image_tag post.get_image(300,300) %></td></tr>
+              <tr><td><%= image_tag post.get_image(350,350) %></td></tr>
             </table>
             <% end %>
-          </div>
         <% end %>
       </div>
+          </div>
+  </div>
+</div>

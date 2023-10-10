@@ -10,73 +10,91 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
   </head>
 
-  <body>
   <body class ="d-flex flex-column vh-100">
-    <header class="header p-4">
-      <nav class="navbar-nav">
-        <div class="container">
-          <div class="row">
-            <a class="navbar-brand mr-auto" href="<%= homes_about_path %>"><span><%= image_tag 'Logo.png', size:'150x150'%></span></a>
-          </div>
-        </div>
+    
+<header class="header">
+  <div class="top-nav fixed-top">
+  <% if user_signed_in? %>
+  <ul class="nav">
+    <li class="ml-auto">
+        <span><%= link_to user_path(current_user) do %><%= image_tag current_user.get_icon_image(150,150),class:"icon" %><% end %></span></li>
+  </ul>
+  <% end %>
+</div>
+  <div class="top-nav">
+    <div class="container">
       <div class="row">
-        <ul class="navbar-nav ml-auto d-flex flex-row">
-          <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "Home", root_path %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "My Page", user_path(current_user.id) %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "All Post", posts_path %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-          </li>
-          <% else %>
-          <li class="nav-item">
-            <%= link_to "Home", root_path %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "About", homes_about_path %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Login", user_session_path %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'GestLogin', users_guest_sign_in_path, method: :post %>
-          </li>
-          
-          <li class="nav-item">
-            <%= link_to "Signup", new_user_registration_path %>
-          </li>
-          <% end %>
-        </ul>
+        <!-- ロゴを左寄せ -->
+        <a class="navbar-brand mr-auto" href="<%= homes_about_path %>">
+          <span><%= image_tag 'Logo.png', size:'150x150' %></span>
+        </a>
       </div>
-      </nav>
-    </header>
+    </div>
+    <div class="row">
+      <ul class="nav ml-auto"> <!-- ナビゲーションを右寄せ -->
+        <% if user_signed_in? %>
+          <li><%= link_to "Home", root_path %></li>
+          <li>|</li>
+          <li><%= link_to "Mypage", user_path(current_user.id) %></li>
+          <li>|</li>
+          <li><%= link_to "All Post", posts_path %></li>
+          <li>|</li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Home", root_path %></li>
+          <li>|</li>
+          <li><%= link_to "Login", user_session_path %></li>
+          <li>|</li>
+          <li><%= link_to 'GestLogin', users_guest_sign_in_path, method: :post %></li>
+          <li>|</li>
+          <li><%= link_to "Signup", new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</header>
     <main class="main">
     <%= yield %>
     </main>
-    <div class="footer">
-    <footer>
-      <div class="container">
-       <div class="row justify-content-cencer p-5">
-        <div class="col text-align:right">
-         <p>Teach me !<br>
-         <i class="fa-brands fa-instagram"></i> &ensp;<i class="fa-solid fa-envelope"></i> &ensp;<i class="fa-brands fa-twitter"></i><br>
-            About<br>
-            Contact<br>
-            ©CopyRight Teach me !</p>
-        </div>
-       </div>
-      </div>
-    </footer>
+    <!--<div class="footer">-->
+    <!--<footer>-->
+    <!--  <div class="container">-->
+    <!--   <div class="row justify-content-cencer p-5">-->
+    <!--    <div class="col text-align:right">-->
+    <!--     <p>Teach me !<br>-->
+    <!--     <i class="fa-brands fa-instagram"></i> &ensp;<i class="fa-solid fa-envelope"></i> &ensp;<i class="fa-brands fa-twitter"></i><br>-->
+    <!--        About<br>-->
+    <!--        Contact<br>-->
+    <!--        ©CopyRight Teach me !</p>-->
+    <!--    </div>-->
+    <!--   </div>-->
+    <!--  </div>-->
+    <!--</footer>-->
+    
+    
+    <div class="bottom-nav fixed-bottom">
+  <ul class="nav">
+    <li class="ml-auto">
+        <a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+    <li><a href="#"><i class="fa-solid fa-envelope"></i></a></li>
+    <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+  </ul>
+</div>
+    <footer class="footer">
+    <div class="container">
+        <ul class="nav">
+            <li><a href="#fake">Home</a> </li>
+            <li>|</li>
+            <li><a href="#fake">About  </a> </li>
+            <li>|</li>
+            <li><a href="#fake">contact us</a> </li>
+        </ul>
     </div>
+      <p class="copy">©CopyRight Teach me !</p>
+</footer>
+    </div>
+    <script src="./js/script.js"></script>
   </body>
 </html>

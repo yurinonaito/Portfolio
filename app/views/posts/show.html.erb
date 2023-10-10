@@ -1,37 +1,49 @@
 <div class="container">
-    <div class="row">
-      <div class="col">
-        <h1>Post show</h1>
-        <div><%= image_tag @post.get_image(550,550) %></div>
-      </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Post show</h1>
+      <div><%= image_tag @post.get_image(550,550) %></div>
+    </div>
 
-      <div class="col">
+    <div class="col-md-6">
+      <div class="post-details">
         <p>投稿文：<%= @post.caption %></p>
-        <p><%= link_to @post.post_url do %>
-        <span>Webサイトを見る</span></p><% end %>
-
-        <%= link_to @post.user.user_name, user_path(@post.user.id) %>
-        
-        <% if @post.favorite?(current_user) %>
-          <%= link_to post_favorites_path(@post.id), method: :delete do %>
-          <span style="color:red;">❤︎</span>
-          <% end %>
-        <% else %>
-          <%= link_to post_favorites_path(@post.id), method: :post do %>
-          <span>❤︎</span>
-          <% end %>
-        <% end %>
-        <p>コメント数： <%= @post.comments.count %></p>
-        <%= render "comments/index", post: @post %>
-        <%= render "comments/form", post: @post, comment: @comment %>
-
-        <%= link_to @post.code_url, class: "button-8", role: "button" do %>
-        <span>Teachme!</span>
-        <% end %>
         <p><%= link_to "編集する", edit_post_path %></p>
         <% if @post.user == current_user %>
-    <%= link_to "削除", post_path(@post), method: :delete %>
-  <% end %>
+          <%= link_to "削除", post_path(@post), method: :delete %>
+        <% end %>
+        <p><%= link_to @post.post_url do %><span>Webサイトを見る</span></p><% end %>
+        <%= link_to @post.user.user_name, user_path(@post.user.id) %><br>
+      </div>
+    </div>
+  </div>
+</div>
+      
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="post-interactions">
+        <div class="button-container">
+          <div id="favorite_btn_<%= @post.id %>">
+            <%= render "favorites/btn", post: @post %>
+          </div>
+          <div>
+            <%= link_to @post.code_url, class: "button-8", role: "button", style: "margin-top: 2px;" do %>
+              <span>Teachme!</span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+        <p>comment： <%= @post.comments.count %></p>
+        <%= render "comments/index", post: @post %>
+        <%= render "comments/form", post: @post, comment: @comment %>
+        
       </div>
     </div>
   </div>

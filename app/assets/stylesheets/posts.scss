@@ -42,3 +42,8 @@
   box-shadow: none;
   color: #2c5777;
 }
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* ボタン間のスペースを均等に配置 */
+}

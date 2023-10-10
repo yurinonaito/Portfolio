@@ -14,11 +14,28 @@ class Post < ApplicationRecord
       image.variant(resize_to_limit: [width, height]).processed
   end
   
+  
     #「ログイン中のユーザーがその投稿に対していいねをしているか」を判断する
   def favorite?(user)
   favorites.where(user_id: user.id).exists?
   end                 #(current_user)のidと等しいuser_idを持つレコードは、favoritesテーブル内に存在するか？」をexists?を用いて判断
                       #一致するレコードが存在しない＝「まだいいねしていない→createアクションへ」
                       #一致するレコードが存在する　＝「すでにいいね済み→destroyアクションへ」と分岐
+  
+  
+  # 検索方法分岐
+  def self.search(search, word)
+    if search == "perfect_match"
+      where("caption LIKE ?", word)
+    elsif search == "forward_match"
+      where("caption LIKE ?", "#{word}%")
+    elsif search == "backward_match"
+      where("caption LIKE ?", "%#{word}")
+    elsif search == "partial_match"
+      where("caption LIKE ?", "%#{word}%")
+    else
+      all
+    end
+  end
   
 end

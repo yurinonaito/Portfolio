@@ -27,26 +27,6 @@ h1{
     color:#fff;
     text-shadow: 0 0 15px #666;
 }
-
-/*Aboutページの動画とテキスト配置*/
-.movie-container {
-  position: relative;
-  text-align: center;
-}
-.main-text {
-  position: absolute; /* 絶対位置指定 */
-  top: 50%;
-  left: 50%;
-  transform: translate(-95%, -50%);
-  font-family: 'Playfair Display', serif;
-  font-size: 14px;
-  color:#fff;
-  text-shadow: 0 0 20px #666;
-}
-.text-content {
-  text-align: center; /* テキストを中央揃え */
-}
-
 /*ユーザーアイコンを丸く表示*/
 .icon {
   width: 60px;
