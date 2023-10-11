@@ -46,7 +46,7 @@
             <%= render "favorites/btn", post: @post %>
           </div>
           <div class="teachme-button">
-            <%= link_to @post.code_url,class: "button-8", role: "button" do %>
+            <%= link_to teachme_post_path(@post),method: :post, class: "button-8", role: "button" do %>
             <span>Teachme!</span>
             <% end %>
             <span class="teachme-count"><%= @post.teachmes_count %></span>

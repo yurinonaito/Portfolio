@@ -59,7 +59,7 @@ class PostsController < ApplicationController
       # Teachme カウントを増加
       @post.increment!(:teachmes_count)
     end
-      
+      redirect_to @post.code_url
   end
   
   private

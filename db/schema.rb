@@ -98,11 +98,9 @@ ActiveRecord::Schema.define(version: 2023_10_11_065841) do
   end
 
   create_table "group_rooms", force: :cascade do |t|
-    t.integer "user_id", null: false
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_group_rooms_on_user_id"
   end
 
   create_table "hashtags", force: :cascade do |t|
@@ -190,7 +188,6 @@ ActiveRecord::Schema.define(version: 2023_10_11_065841) do
   add_foreign_key "group_chats", "users"
   add_foreign_key "group_entries", "group_rooms"
   add_foreign_key "group_entries", "users"
-  add_foreign_key "group_rooms", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "post_hashtag_relations", "hashtags"
   add_foreign_key "post_hashtag_relations", "posts"
