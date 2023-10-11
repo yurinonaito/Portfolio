@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get :favorites, on: :collection
     member do
       patch 'nonrelease'
+      patch 'release'
     end
   end
   

@@ -7,8 +7,13 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to posts_path
+    if @post.save
+       flash[:notice] = "投稿に成功しました。"
+       redirect_to posts_path
+    else
+       flash.now[:notice] = "投稿に失敗しました。"
+       render :new
+    end
   end
   
   def index
@@ -32,8 +37,12 @@ class PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to post_path(@post.id)  
+    if @post.update(post_params)
+       flash[:notice] = "更新に成功しました。"
+    else
+       flash.now[:notice] = "更新に失敗しました。"
+       redirect_to post_path(@post.id)
+    end
   end
   
   def hashtag

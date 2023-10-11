@@ -1,6 +1,6 @@
-<% if @favorite_list.present? %>
-  <% @favorite_list.each do |post| %>
+<% if @favorite_posts.present? %>
+  <% @favorite_posts.each do |post| %>
     <%= post.caption %>
-    <%= post.get_image(350,350) %>
+    <%= image_tag post.get_image(350,350) %>
   <% end %>
 <% end %>

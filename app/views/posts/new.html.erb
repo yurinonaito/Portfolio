@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row m-3">
     <div class="col p-3">
+      <div>
+        <%= flash[:notice] %>
+      </div>
       <%= form_with model: @post,url: posts_path do |f| %>
       
       <div class="form-group row">

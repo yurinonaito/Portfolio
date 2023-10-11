@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 2023_10_11_065841) do
     t.integer "subject_id"
     t.integer "user_id"
     t.integer "action_type", null: false
-    t.boolean "checked"
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["subject_type", "subject_id"], name: "index_notifications_on_subject"

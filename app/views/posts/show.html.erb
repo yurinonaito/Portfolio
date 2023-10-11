@@ -37,6 +37,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
+      <div>
+        <%= flash[:notice] %>
+      </div>
       <div class="post-interactions">
         <div class="button-container">
           <div id="favorite_btn_<%= @post.id %>">
