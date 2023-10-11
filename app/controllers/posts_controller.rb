@@ -42,6 +42,17 @@ class PostsController < ApplicationController
     @posts = @tag.posts
   end
   
+  
+  def teachme
+    @post = Post.find(params[:id]) # 対応する投稿を取得
+
+    if @post
+      # Teachme カウントを増加
+      @post.increment!(:teachmes_count)
+    end
+      
+  end
+  
   private
 
   def post_params

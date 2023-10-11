@@ -61,6 +61,14 @@
             <div class="col mt-2 mr-1">
               <%= f.submit "編集内容を保存" %>
             </div>
+            
+            <div class="col mt-2 mr-1">
+            <% if @user.released? %>
+              <%= link_to '非公開にする',"/users/nonrelease/#{@user.id}", method: :patch%>
+            <% else %>
+              <%= link_to '公開する',"/users/release/#{@user.id}", method: :patch%>
+            <% end %>
+            </div>
 
             <div class="col mt-2 mr-1">
               <%= link_to '退会する', users_confirm_withdraw_path %>

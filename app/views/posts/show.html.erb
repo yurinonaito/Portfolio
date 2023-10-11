@@ -42,10 +42,11 @@
           <div id="favorite_btn_<%= @post.id %>">
             <%= render "favorites/btn", post: @post %>
           </div>
-          <div>
-            <%= link_to @post.code_url, class: "button-8", role: "button", style: "margin-top: 2px;" do %>
-              <span>Teachme!</span>
+          <div class="teachme-button">
+            <%= link_to @post.code_url,class: "button-8", role: "button" do %>
+            <span>Teachme!</span>
             <% end %>
+            <span class="teachme-count"><%= @post.teachmes_count %></span>
           </div>
         </div>
       </div>

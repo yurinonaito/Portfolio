@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_11_013158) do
+ActiveRecord::Schema.define(version: 2023_10_11_065841) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -112,6 +112,18 @@ ActiveRecord::Schema.define(version: 2023_10_11_013158) do
     t.index ["hashname"], name: "index_hashtags_on_hashname", unique: true
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "subject_type"
+    t.integer "subject_id"
+    t.integer "user_id"
+    t.integer "action_type", null: false
+    t.boolean "checked"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subject_type", "subject_id"], name: "index_notifications_on_subject"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "post_hashtag_relations", force: :cascade do |t|
     t.integer "post_id"
     t.integer "hashtag_id"
@@ -128,6 +140,7 @@ ActiveRecord::Schema.define(version: 2023_10_11_013158) do
     t.string "post_url", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "teachmes_count", default: 0
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -157,6 +170,8 @@ ActiveRecord::Schema.define(version: 2023_10_11_013158) do
     t.string "telephone_number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", limit: 1, default: 1, null: false
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -176,6 +191,7 @@ ActiveRecord::Schema.define(version: 2023_10_11_013158) do
   add_foreign_key "group_entries", "group_rooms"
   add_foreign_key "group_entries", "users"
   add_foreign_key "group_rooms", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "post_hashtag_relations", "hashtags"
   add_foreign_key "post_hashtag_relations", "posts"
   add_foreign_key "posts", "users"

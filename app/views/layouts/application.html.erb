@@ -44,6 +44,14 @@
           <li>|</li>
           <li><%= link_to "All Post", posts_path %></li>
           <li>|</li>
+          <li><%= link_to "通知一覧", notifications_path %>
+              <% if current_user.notifications.where(checked: false).exists? %>
+                <i class="fa-regular fa-bell fa-lg fa-stack-2x"></i>
+                <i class="fas fa-circle n-circle fa-stack-1x"></i>
+              <% else %>
+                <i class="fa-regular fa-bell"></i>
+              <% end %></li>
+          <li>|</li>
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Home", root_path %></li>
@@ -92,7 +100,11 @@
             <li>|</li>
             <li><a href="#fake">About  </a> </li>
             <li>|</li>
-            <li><a href="#fake">contact us</a> </li>
+            <li>
+            <% if current_user.try(:admin?) %>
+              <%= link_to 'Admin_Login', rails_admin_path %>
+            <% end %>
+            </li>
         </ul>
     </div>
       <p class="copy">©CopyRight Teach me !</p>

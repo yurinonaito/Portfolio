@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :chats, dependent: :destroy
   has_many :rooms, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   
   has_one_attached :icon_image
   
@@ -88,5 +89,7 @@ class User < ApplicationRecord
       all
     end
   end
+  
+  enum status:{nonreleased: 0, released: 1}
   
 end

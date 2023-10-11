@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   has_many :hashtags, through: :post_hashtag_relations
   
   has_one_attached :image
+  has_one :notification, as: :subject, dependent: :destroy
   
   def get_image(width, height)
     unless image.attached?

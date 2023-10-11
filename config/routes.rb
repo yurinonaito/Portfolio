@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'notifications/index'
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root to: "homes#top"
   
   devise_for :users, controllers: {
@@ -25,12 +27,18 @@ Rails.application.routes.draw do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
     get :favorites, on: :collection
+    member do
+      patch 'nonrelease'
+    end
   end
   
   
   resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resource :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
+    member do
+    post 'teachme'
+    end
   end
   
   resources :rooms, only: [:create, :show] do
@@ -41,5 +49,6 @@ Rails.application.routes.draw do
     resources :group_chats, only: [:create, :show]
   end
   
+  resources :notifications, only: [:index, :destroy]
   
 end
