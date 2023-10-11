@@ -1,16 +1,16 @@
-        <% if post.favorite?(current_user) %>
-        
-          <%= link_to post_favorites_path(post.id), method: :delete, remote: true do %>
-          <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-          <% end %>
-          <%= post.favorites.count %>
-          
-        <% else %>
-          <%= link_to post_favorites_path(post.id), method: :post, remote: true do %>
-          <i class="fas fa-heart" aria-hidden="true"></i>
-          <% end %>
-          <%= post.favorites.count %>
-          
+
+      <% if !Favorite.exists?(user: current_user, post_id: @post.id) %>
+        <%= link_to post_favorites_path(@post), method: :post, remote: true, class: "favorite-btn favorite-post" do %>
+        <i class="far fa-thumbs-up"></i>
         <% end %>
+        <span>good！</span>
+        <%= @post.favorites.length %> 
+      <% else %>
+        <%= link_to post_favorites_path(@post), method: :delete, remote: true, class: "favorite-btn favorite-delete" do %>
+        <i class="far fa-thumbs-up"></i>
+        <% end %>
+        <span>good！</span>
+        <%= @post.favorites.length %> 
+      <% end %>
         
         

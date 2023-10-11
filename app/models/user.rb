@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :group_entries, dependent: :destroy
   has_many :group_chats, dependent: :destroy
-  has_many :group_rooms, dependent: :destroy
+  has_many :group_rooms, through: :group_entries, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :chats, dependent: :destroy
   has_many :rooms, dependent: :destroy

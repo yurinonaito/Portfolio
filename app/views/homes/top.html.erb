@@ -36,7 +36,7 @@
         <div class="menu_container">
           <a href="<%= searches_search_path %>"><span><%= image_tag 'Search.png', size:'250x250'%></span></a>
           <% if current_user %>
-          <a href="<%= favorites_user_path(current_user.id) %>"><span><%= image_tag 'Favorite.png', size:'250x250'%></span></a>
+          <a href="<%= favorites_users_path(current_user.id) %>"><span><%= image_tag 'Favorite.png', size:'250x250'%></span></a>
           <% end %>
           <a href="<%= group_rooms_path %>"><span><%= image_tag 'Groupchatroom.png', size:'250x250'%></span></a>
           <a href="<%= new_post_path %>"><span><%= image_tag 'Newpost.png', size:'250x250'%></span></a>

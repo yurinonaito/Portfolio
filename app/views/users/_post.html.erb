@@ -1,0 +1,6 @@
+<% if @favorite_list.present? %>
+  <% @favorite_list.each do |post| %>
+    <%= post.caption %>
+    <%= post.get_image(350,350) %>
+  <% end %>
+<% end %>

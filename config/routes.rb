@@ -24,10 +24,7 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
-    
-    member do
-    get :favorites
-    end
+    get :favorites, on: :collection
   end
   
   
@@ -40,7 +37,7 @@ Rails.application.routes.draw do
     resources :chats, only: [:create]
   end
 
-  resources :group_rooms, only: [:index, :create, :show] do
+  resources :group_rooms, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :group_chats, only: [:create, :show]
   end
   
