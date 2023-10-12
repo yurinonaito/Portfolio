@@ -3,7 +3,6 @@
     <div class="col p-3"><h1>Favorite list</h1>
       <% if @favorite_posts.present? %>
         <% @favorite_posts.each do |post| %>
-          <%= post.caption %>
           <%= image_tag post.get_image(350,350) %>
         <% end %>
       <% end %>
