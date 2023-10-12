@@ -1,10 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
+      <div>
+      <%= flash[:notice] %>
+      </div>
       <h1>Post show</h1>
-      <%= image_tag @post.user.get_icon_image(100,100),class:"icon" %>
-      <%= link_to @post.user.user_name, user_path(@post.user.id) %>
-      <div><%= image_tag @post.get_image(550,550) %></div>
+        <%= image_tag @post.user.get_icon_image(100,100),class:"icon" %>
+        <%= link_to @post.user.user_name, user_path(@post.user.id) %>
+      <div>
+        <%= image_tag @post.get_image(550,550) %>
+      </div>
     </div>
 
     <div class="col-md-6">
@@ -13,22 +18,22 @@
         <br>
         <br>
         <p>投稿文：<%= render_with_hashtags(@post.caption) %></p>
-        <div class="button-container">
-  <% if @post.user == current_user %>
-    <div style="display: inline-block; margin-right: 10px;">
-      <%= link_to edit_post_path, class: "button-12", role: "button", style: "margin-top: 2px;" do %>
-        <span>edit</span>
+      <div class="button-container">
+        <% if @post.user == current_user %>
+          <div style="display: inline-block; margin-right: 10px;">
+            <%= link_to edit_post_path, class: "button-12", role: "button", style: "margin-top: 2px;" do %>
+              <span>edit</span>
+            <% end %>
+            <%= link_to @post, method: :delete, data: { confirm: "本当に消しますか?" }, class: "button-12", role: "button", style: "margin-top: 2px;" do %>
+              <span>delete</span>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <br>
+      <%= link_to @post.post_url do %>
+        <span>Check the Web</span>
       <% end %>
-      <%= link_to post_path(@post), class: "button-12", role: "button", style: "margin-top: 2px;" do %>
-        <span>delete</span>
-      <% end %>
-    </div>
-  <% end %>
-</div>
-<br>
-         <%= link_to @post.post_url do %>
-         <span>Check the Web</span>
-         <% end %>
       </div>
     </div>
   </div>
@@ -37,9 +42,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <div>
-        <%= flash[:notice] %>
-      </div>
+  
       <div class="post-interactions">
         <div class="button-container">
           <div id="favorite_btn_<%= @post.id %>">

@@ -61,6 +61,14 @@ class User < ApplicationRecord
     followings.include?(user)
   end
   
+  # 相互フォロー一覧を取得
+  def mutual_followings
+    following_users = self.followings
+    followers_users = self.followers
+    mutual_followings = following_users & followers_users
+    mutual_followings
+  end
+  
   # 検索方法分岐
   def self.search(search, word)
     if search == "perfect_match"

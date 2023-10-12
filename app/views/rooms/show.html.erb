@@ -1,39 +1,22 @@
-<h1>DM room</h1>
-<div class="left-button">
-  <!--<#%= link_to "ユーザー詳細に戻る", "users/show/:id" %>-->
-</div>
-<h4 class="rooms-title">気になる同士</h4>
-<% @entries.each do |entry| %>
-  <div class="user-name">
-  <strong>
-    <%= image_tag entry.user.get_icon_image(100,100), class:"icon" %>
-      <a class="rooms-user-link" href="/users/<%= entry.user.id %>">
-        <%= entry.user.user_name %>さん
-      </a>
-  </strong>
-  </div>
-<% end %>
-<hr>
-<div class="chats">
-  <div class="chat">
-    <% if @chats.present? %>
-      <% @chats.each do |chat| %>
-        <div class="chat-box">
-          <div class="chat-face">
-            <%= image_tag chat.user.get_icon_image(100,100), class:"icon" %>
-          </div>
-          <div class="chat-hukidashi"> <strong><%= chat.content %></strong> <br>
-            <%= chat.created_at.strftime("%Y-%m-%d %H:%M")%>
-          </div>
-        </div>
+<div class="container">
+  <div class="row m-3">
+    <div class="col p-3">
+      <h1 class="rooms-title">friends</h1>
+      <% if @mutual_followings.any? %>
+        <ul>
+          <% @mutual_followings.each do |user| %>
+            <li>
+              <%= image_tag user.get_icon_image(100,100), class:"icon" %>
+              <%= link_to user.user_name, user_path(user) %>さん
+              <% if current_user != user %>
+                <%= link_to 'chatへ', room_chat_path(user.id)%>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>相互フォローユーザーはいません。</p>
       <% end %>
-    <% end %>
-  </div>
-  <div class="posts">
-    <%= form_with model: @chat, url:room_chats_path(@room),method: :post do |f| %>
-      <%= f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field" %>
-        <%= f.hidden_field :room_id, value: @room.id %>
-          <%= f.submit "投稿",class: 'form-submit'%>
-    <% end %>
+    </div>
   </div>
 </div>

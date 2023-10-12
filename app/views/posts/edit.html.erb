@@ -1,45 +1,52 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
+  <div class="row m-3">
+    <div class="col p-3">
       <div>
         <%= flash[:notice] %>
       </div>
-        <h1>Post edit</h1>
-        <%= form_with model: @post,url: post_path do |f| %>
-          <div class="form-group row">
-            <label for="inputImage" class="col-sm-2 col-form-label">投稿画像</label>
-            <div class="col-sm-10">
-              <%= f.file_field :image, accept: "image/*" %>
-            </div>
-          </div>
-          
-          <div class="form-group row">
-            <label for="inputCaption" class="col-sm-2 col-form-label">投稿文</label>
-            <div class="col-sm-10">
-              <%= f.text_area :caption, placeholder:"文章を記入する際に『＃』を使用すると検索時に検索されやすくなります", rows:'8' %>
-            </div>
-          </div>
-          
-          <div class="form-group row">
-            <label for="inputPostUrl" class="col-sm-2 col-form-label">投稿URL</label>
-            <div class="col-sm-10">
-              <%= f.text_field :post_url, placeholder:"投稿するWebサービスのURLを記入してください" %>
-            </div>
-          </div>
-          
-          <div class="form-group row">
-            <label for="inputCodeUrl" class="col-sm-2 col-form-label">コードURL</label>
-            <div class="col-sm-10">
-              <%= f.text_field :code_url, placeholder:"コードのURL（Github等）を記入してください" %>
-            </div>
-          </div>
-          
-          <div class="form-group row">
-            <div class="col-sm-10">
-              <button type="submit">変更を保存</button>
-            </div>
-          </div>
-        <% end %>
+    </div>
+  </div>
+        
+  <div class="row m-3">
+    <div class="col-sm-11 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h1>Post edit</h1>
+      <%= form_with model: @post,url: post_path do |f| %>
+  
+  <div class="form-group row">
+    <label for="inputImage" class="col-sm-2 col-form-label">投稿画像</label>
+    <div class="col-sm-10">
+      <%= f.file_field :image, accept: "image/*" %>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <label for="inputCaption" class="col-sm-2 col-form-label">投稿文</label>
+    <div class="col-sm-10">
+      <%= f.text_area :caption, placeholder:"文章を記入する際に『＃』を使用すると検索時に検索されやすくなります", rows:'8' %>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <label for="inputPostUrl" class="col-sm-2 col-form-label">投稿URL</label>
+    <div class="col-sm-10">
+      <%= f.text_field :post_url, placeholder:"投稿するWebサービスのURLを記入してください" %>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <label for="inputCodeUrl" class="col-sm-2 col-form-label">コードURL</label>
+    <div class="col-sm-10">
+      <%= f.text_field :code_url, placeholder:"コードのURL（Github等）を記入してください" %>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit">変更を保存</button>
+    </div>
+  </div>
+  
+      <% end %>
     </div>
   </div>
 </div>

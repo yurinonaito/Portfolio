@@ -4,16 +4,16 @@
       <%= render partial: "searchform" %>
       <h1>Results index</h1>
       
-      <h2>ハッシュタグ #<%= @tag %></h2>
-  <ul>
-    <% @posts.each do |post| %>
-      <li>
-        <%= link_to post_path(post.id) do %>
-          <%= image_tag post.get_image(300,300) %>
+      <h2>#<%= @tag %></h2>
+      <ul>
+        <% @posts.each do |post| %>
+        <li>
+          <%= link_to post_path(post.id) do %>
+            <%= image_tag post.get_image(300,300) %>
+          <% end %>
+        </li>
         <% end %>
-      </li>
-    <% end %>
-  </ul>
+      </ul>
       
       <table class="table table-hover table-inverse">
         <!--検索対象モデルがUserの時 -->
@@ -21,7 +21,9 @@
         <tbody>
           <% @users.each do |user| %>
           <tr>
-            <td><%= link_to user.user_name, user_path(user.id) %></td>
+            <td>
+              <%= link_to user.user_name, user_path(user.id) %>
+            </td>
           </tr>
           <% end %>
         </tbody>
@@ -31,7 +33,7 @@
           <% @posts.each do |post| %>
           <tr>
             <td><%= link_to post_path(post.id) do %>
-                <%= image_tag post.get_image(300,300) %>
+                  <%= image_tag post.get_image(300,300) %>
                 <% end %>
             </td>
           </tr>
@@ -39,4 +41,6 @@
         </tbody>
         <% end %>
       </table>
-      
+    </div>
+  </div>
+</div>

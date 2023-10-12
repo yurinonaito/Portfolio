@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
-  
+  get 'favicon.ico', to: proc { [204, {}, ['']] }
   get 'homes/about'
 
   get 'users/information/edit' => 'users#edit'
@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   end
   
   resources :rooms, only: [:create, :show] do
+    get 'chat/:id' => 'chats#show', as: 'chat'
     resources :chats, only: [:create]
   end
 

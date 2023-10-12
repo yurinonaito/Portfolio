@@ -14,101 +14,92 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Roboto+Slab:wght@200&display=swap" rel="stylesheet">
   </head>
-
+  
   <body class ="d-flex flex-column vh-100">
-    
-<header class="header">
-  <div class="top-nav fixed-top">
-  <% if user_signed_in? %>
-  <ul class="nav">
-    <li class="ml-auto">
-        <span><%= link_to user_path(current_user) do %><%= image_tag current_user.get_icon_image(150,150),class:"icon" %><% end %></span></li>
-  </ul>
-  <% end %>
-</div>
-  <div class="top-nav">
-    <div class="container">
-      <div class="row">
-        <!-- ロゴを左寄せ -->
-        <a class="navbar-brand mr-auto" href="<%= homes_about_path %>">
-          <span><%= image_tag 'Logo.png', size:'150x150' %></span>
-        </a>
-      </div>
-    </div>
-    <div class="row">
-      <ul class="nav ml-auto"> <!-- ナビゲーションを右寄せ -->
+    <header class="header">
+      
+      <div class="top-nav fixed-top">
         <% if user_signed_in? %>
-          <li><%= link_to "Home", root_path %></li>
-          <li>|</li>
-          <li><%= link_to "Mypage", user_path(current_user.id) %></li>
-          <li>|</li>
-          <li><%= link_to "All Post", posts_path %></li>
-          <li>|</li>
-          <li><%= link_to "通知一覧", notifications_path %>
-              <% if current_user.notifications.where(checked: false).exists? %>
-                <i class="fa-regular fa-bell n-circle"></i>
-                <!--<i class="fas fa-circle n-circle fa-stack-1x"></i>-->
-              <% else %>
-                <i class="fa-regular fa-bell"></i>
-              <% end %></li>
-          <li>|</li>
-          <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to "Home", root_path %></li>
-          <li>|</li>
-          <li><%= link_to "Login", user_session_path %></li>
-          <li>|</li>
-          <li><%= link_to 'GestLogin', users_guest_sign_in_path, method: :post %></li>
-          <li>|</li>
-          <li><%= link_to "Signup", new_user_registration_path %></li>
+        <ul class="nav">
+          <li class="ml-auto">
+            <span><%= link_to user_path(current_user) do %><%= image_tag current_user.get_icon_image(150,150),class:"icon" %><% end %></span>
+          </li>
+        </ul>
         <% end %>
-      </ul>
-    </div>
-  </div>
-</header>
+      </div>
+      
+      <div class="top-nav">
+        <div class="container">
+          <div class="row">
+            <a class="navbar-brand mr-auto" href="<%= homes_about_path %>">
+              <span><%= image_tag 'Logo.png', size:'150x150' %></span>
+            </a>
+          </div>
+        </div>
+          <div class="row">
+            <ul class="nav ml-auto">
+              <% if user_signed_in? %>
+                <li><%= link_to "Home", root_path %></li>
+                <li>|</li>
+                <li><%= link_to "Mypage", user_path(current_user.id) %></li>
+                <li>|</li>
+                <li><%= link_to "All Post", posts_path %></li>
+                <li>|</li>
+                <li><%= link_to "通知一覧", notifications_path %>
+                    <% if current_user.notifications.where(checked: false).exists? %>
+                      <i class="fa-regular fa-bell n-circle"></i>
+                        <!--<i class="fas fa-circle n-circle fa-stack-1x"></i>-->
+                    <% else %>
+                      <i class="fa-regular fa-bell"></i>
+                    <% end %>
+                </li>
+                <li>|</li>
+                <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "Home", root_path %></li>
+                <li>|</li>
+                <li><%= link_to "Login", user_session_path %></li>
+                <li>|</li>
+                <li><%= link_to 'GestLogin', users_guest_sign_in_path, method: :post %></li>
+                <li>|</li>
+                <li><%= link_to "Signup", new_user_registration_path %></li>
+              <% end %>
+            </ul>
+          </div>
+      </div>
+    </header>
+    
     <main class="main">
-    <%= yield %>
+      <%= yield %>
     </main>
-    <!--<div class="footer">-->
-    <!--<footer>-->
-    <!--  <div class="container">-->
-    <!--   <div class="row justify-content-cencer p-5">-->
-    <!--    <div class="col text-align:right">-->
-    <!--     <p>Teach me !<br>-->
-    <!--     <i class="fa-brands fa-instagram"></i> &ensp;<i class="fa-solid fa-envelope"></i> &ensp;<i class="fa-brands fa-twitter"></i><br>-->
-    <!--        About<br>-->
-    <!--        Contact<br>-->
-    <!--        ©CopyRight Teach me !</p>-->
-    <!--    </div>-->
-    <!--   </div>-->
-    <!--  </div>-->
-    <!--</footer>-->
-    
-    
-    <div class="bottom-nav fixed-bottom">
-  <ul class="nav">
-    <li class="ml-auto">
-        <a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-    <li><a href="#"><i class="fa-solid fa-envelope"></i></a></li>
-    <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-  </ul>
-</div>
+
+      <div class="bottom-nav fixed-bottom">
+        <ul class="nav">
+          <li class="ml-auto">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          </li>
+        </ul>
+      </div>
     <footer class="footer">
     <div class="container">
-        <ul class="nav">
-            <li><a href="#fake">Home</a> </li>
-            <li>|</li>
-            <li><a href="#fake">About  </a> </li>
-            <li>|</li>
-            <li>
-            <% if current_user.try(:admin?) %>
+      <ul class="nav">
+        <li><%= link_to "Home", root_path %></li>
+        <li>|</li>
+        <li><%= link_to "About", homes_about_path %></li>
+        <li>|</li>
+        <li><% if current_user.try(:admin?) %>
               <%= link_to 'Admin_Login', rails_admin_path %>
             <% end %>
-            </li>
-        </ul>
+        </li>
+      </ul>
     </div>
       <p class="copy">©CopyRight Teach me !</p>
-</footer>
-    </div>
+    </footer>
   </body>
 </html>

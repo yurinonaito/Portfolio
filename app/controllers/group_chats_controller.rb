@@ -1,2 +1,3 @@
-class GroupChatsController < ApplicationController
+class GroupchatsController < ApplicationController
+
 end
