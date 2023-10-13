@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :group_rooms, through: :group_entries, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :chats, dependent: :destroy
-  has_many :rooms, dependent: :destroy
+  has_many :rooms, through: :entries, dependent: :destroy
   has_many :notifications, dependent: :destroy
   
   has_one_attached :icon_image

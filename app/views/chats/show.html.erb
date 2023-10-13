@@ -1,35 +1,37 @@
-<h1 class="rooms-title">chat room</h1>
-<% @entries.each do |entry| %>
-  <div class="user-name">
-  <strong>
-    <%= image_tag entry.user.get_icon_image(100,100), class:"icon" %>
-      <a class="rooms-user-link" href="/users/<%= entry.user.id %>">
-        <%= entry.user.user_name %>さん
-      </a>
-  </strong>
-  </div>
-<% end %>
-<hr>
-<div class="chats">
-  <div class="chat">
-    <% if @chats.present? %>
-      <% @chats.each do |chat| %>
-        <div class="chat-box">
-          <div class="chat-face">
-            <%= image_tag chat.user.get_icon_image(100,100), class:"icon" %>
-          </div>
-          <div class="chat-hukidashi"> <strong><%= chat.content %></strong> <br>
-            <%= chat.created_at.strftime("%Y-%m-%d %H:%M")%>
-          </div>
+<div class="container">
+  <div class="row m-3">
+    <div class="col p-3">
+      <h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>">
+      <%= image_tag @user.get_icon_image(100,100), class:"icon" %><%= @user.user_name %> さんとのチャット</h1>
+      <hr>
+      <div class="chats">
+        <div class="chat">
+          <% if @chats.present? %>
+            <% @chats.each do |chat| %>
+              <div class="chat-box">
+                <div class="chat-face">
+                  <%= image_tag chat.user.get_icon_image(100,100), class:"icon" %>
+                </div>
+                <div class="chat-hukidashi"> <strong><%= chat.content %></strong> <br>
+                  <%= chat.created_at.strftime("%Y-%m-%d %H:%M")%>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
         </div>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="posts">
-    <%= form_with model: @chat, url:room_chats_path(@room),method: :post do |f| %>
-      <%= f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field" %>
-        <%= f.hidden_field :room_id, value: @room.id %>
-          <%= f.submit "投稿",class: 'form-submit'%>
-    <% end %>
+        
+        <div class="errors">
+          <%= render "layouts/errors", obj: @chat %>
+        </div>
+        
+        <div class="posts">
+          <%= form_with model: @chat, data: {remote: true} do |f| %>
+            <%= f.text_field :content %>
+            <%= f.hidden_field :room_id %>
+            <%= f.submit "投稿",class: 'form-submit'%>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

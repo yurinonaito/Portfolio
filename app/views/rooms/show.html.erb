@@ -9,7 +9,7 @@
               <%= image_tag user.get_icon_image(100,100), class:"icon" %>
               <%= link_to user.user_name, user_path(user) %>さん
               <% if current_user != user %>
-                <%= link_to 'chatへ', room_chat_path(user.id)%>
+                <%= link_to 'chatへ', chat_path(user.id)%>
               <% end %>
             </li>
           <% end %>

@@ -1,44 +1,47 @@
 class ChatsController < ApplicationController
- before_action :authenticate_user!, only: [:create]
- 
+  before_action :reject_non_related, only: [:show]
+  
+  
   def show
     @user = User.find(params[:id])
-    rooms = current_user.entries.pluck(:room_id)
-    entries = Entry.find_by(user_id: @user.id, room_id: rooms)
-
-    unless entries.nil?
-      @room = entries.room
-    else
-      @room = Room.new
-      if @room.save
-        Entry.create(user_id: current_user.id, room_id: @room.id)
-        Entry.create(user_id: @user.id, room_id: @room.id)
-      else
-        # チャットルームの作成に失敗した場合の処理
-      end
-    end
-    
-    @chat = @room.chats.build(user_id: current_user.id)
-    @chats = @room.chats.order(created_at: :desc)
-    @entries = @room.entries
-  end
- 
-  def create
-     if Entry.where(user_id: current_user.id, room_id: params[:chat][:room_id]).present?
-       @chat = Chat.new(params.require(:chat).permit(:user_id, :content, :room_id).merge(user_id: current_user.id))
-      
-       if @chat.save
-        # チャットの保存に成功した場合の処理
-       else
-         flash[:alert] = "メッセージ送信に失敗しました。"
-       end
-         redirect_to "/rooms/#{params[:chat][:room_id]}"
-     end
-  end
+    # ログインユーザーと表示中のユーザーの双方のエントリを取得
+    current_user_entries = current_user.entries
+    user_entries = @user.entries
   
-    private
+    # 共通のルームIDを探します
+    common_room = current_user_entries.joins(:room).where(rooms: { id: user_entries.pluck(:room_id) }).first&.room
+
+  
+    if common_room
+      @room = common_room
+    else
+      # 共通のルームがない場合、新しいルームを作成しエントリを作成
+      @room = Room.create
+      Entry.create(user_id: current_user.id, room_id: @room.id)
+      Entry.create(user_id: @user.id, room_id: @room.id)
+      @entries = @room.entries
+      
+    end
+      @entries = @room.entries
+      @chats = @room.chats
+      @chat = Chat.new(room_id: @room.id)
+  end
+
+  def create
+    @chat = current_user.chats.new(chat_params)
+    render :validater unless @chat.save
+  end
+
+  private
   def chat_params
     params.require(:chat).permit(:content, :room_id)
   end
 
+  def reject_non_related
+    user = User.find(params[:id])
+    unless current_user.following?(user) && user.following?(current_user)
+      redirect_to posts_path
+    end
+  end
 end
+

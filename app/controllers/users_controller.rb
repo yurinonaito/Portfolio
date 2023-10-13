@@ -12,13 +12,16 @@ class UsersController < ApplicationController
     
     unless @user.id == current_user.id
            @current_entry.each do |current|
-           @another_entry.each do |another|
-    if current.room_id == another.room_id
-           @is_room = true
-           @room_id = current.room_id
-    end
+             
+             @another_entry.each do |another|
+              if current.room_id == another.room_id
+                     @is_room = true
+                     @room_id = current.room_id
+              end
+             end
+             
            end
-           end
+           
     unless @is_room
            @room = Room.new
            @entry = Entry.new
@@ -33,10 +36,10 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      flash[:notice] = "変更を保存しました。"
-      redirect_to user_path(current_user.id)
+       flash[:notice] = "変更を保存しました。"
+       redirect_to user_path(current_user.id)
     else
-      render :edit
+       render :edit
     end
   end
 
