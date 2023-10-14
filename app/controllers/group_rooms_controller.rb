@@ -7,10 +7,6 @@ class GroupRoomsController < ApplicationController
         @group_room_lists_none = "グループに参加していません。"
     end
 
-    # def new
-    #     @group_room = GroupRoom.new
-    #     @group_room.users << current_user
-    # end
     
     def new
       @group_room = GroupRoom.new
