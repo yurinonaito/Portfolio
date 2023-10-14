@@ -17,8 +17,11 @@
     <div class="col-4 text-center">
       <br>
       <br>
-      <%= link_to '退会しない', users_mypage_path %>
-      <%= link_to '退会する', users_withdraw_path, method: :patch, data: { confirm: "本当に退会しますか？" } %>
+      <ul>
+        <li><%= link_to '退会しない', user_path(current_user) %></li>
+        <li>|</li>
+        <li><%= link_to '退会する', users_withdraw_path, method: :patch, data: { confirm: "本当に退会しますか？" } %></li>
+      </ul>
       <br>
       <br>
       <br>

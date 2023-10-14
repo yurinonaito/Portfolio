@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row my-3">
     <div class="col">
-      <script src="js/top.js"></script>
+      <script src="js/script.js"></script>
       <h1 class="title">
        <span>T</span>
        <span>E</span>
@@ -20,7 +20,7 @@
         <!--新着投稿。posts controllerにstrong parameter記載されていれば動くはず-->
         <div class="new_posts_container">
           <% @posts.each do |post| %>
-          <div class="new_posts">
+          <div class="new_posts_icon">
             <div class="hover">
               <span><%= link_to post_path(post) do %><%= image_tag post.user.get_icon_image(150,150), class: "icon" %><% end %></span><br>
             </div>
@@ -30,33 +30,57 @@
       </div>
     </div>
     
+    <br>
+    <br>
+    <br>
     
     <div class="row">
       <div class="col mr-1">
         <div class="menu_container">
-          <a href="<%= searches_search_path %>"><span><%= image_tag 'Search.png', size:'250x250'%></span></a>
-          <% if current_user %>
-          <a href="<%= favorites_users_path %>"><span><%= image_tag 'Favorite.png', size:'250x250'%></span></a>
-          <% end %>
-          <a href="<%= group_rooms_path %>"><span><%= image_tag 'Groupchatroom.png', size:'250x250'%></span></a>
-          <a href="<%= new_post_path %>"><span><%= image_tag 'Newpost.png', size:'250x250'%></span></a>
+          <ul>
+            <li class="menu">
+              <%= link_to "S e a r c h", searches_search_path, class:"link" %>
+              &ensp;
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </li>
+              &emsp;
+            <li class="menu">
+              <%= link_to "F a v o r i t e s", favorites_users_path, class:"link" %>
+              &ensp;
+              <i class="fa-solid fa-heart"></i>
+            </li>
+              &emsp;
+            <li class="menu">
+              <%= link_to "G r o u p r o o m", group_rooms_path, class:"link" %>
+              &ensp;
+              <i class="fa-solid fa-comments"></i>
+            </li>
+              &emsp;
+            <li class="menu">
+              <%= link_to "N e w p o s t", new_post_path, class:"link" %>
+              &ensp;
+              <i class="fa-solid fa-pen-to-square"></i>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
     
-    <!--スライドショーを入れる予定-->
-    <ul class="slider">
-     <li class="slider-inner">
+    <br>
+    <br>
+    <br>
+    
+    <!--新着９件を新しい順に表示-->
+    <ul class="new_posts">
        <% @posts.each do |post| %>
-        <li class="slider-item">
-          <%= image_tag post.get_image(400,400), class: "newpost_image" %>
+        <li>
+          <%= image_tag post.get_image(320,320), class: "newpost_image" %>
         </li>
        <% end %>
-    </li>
    </ul>
 
      <div class="d-flex my-3 justify-content-end">
-       <%= link_to "more ▷▷", posts_path %>
+       <%= link_to "more ▷▷", posts_path, class:"link" %>
      </div>
     </div>
   </div>

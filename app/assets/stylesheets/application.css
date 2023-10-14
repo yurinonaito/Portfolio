@@ -15,19 +15,40 @@
  */
 
 /* 英語のフォントファミリーを指定 */
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
 header,main,footer{
   font-family: 'Merriweather', serif;
+  width: 100%;
 }
 
 
 header{
-  background-color: #FFFCF9;
+  /*background-color: #FCE7F5;*/
+  width: 100%;
 }
 
 footer{
-  background-color: #FFFCF9;
+  /*background-color: #FCE7F5;*/
+  width: 100%;
 }
-/*見出し設定*/
+
+.fullscreen {
+  width: 100%;
+  height: auto;
+  margin: 0; 
+  padding: 0; 
+  overflow: visible; 
+  flex: 1;
+}
+
+
 h1{
     /*見た目の調整*/
     color:#fff;
@@ -64,4 +85,22 @@ h1{
 .button-12:focus {
   box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
+}
+
+.menu {
+  font-size: 25px;
+  color: white;
+  color: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+}
+.fa-solid{
+  color: black;
+}
+
+.link{
+  color: black;
+  text-decoration: none;
 }
