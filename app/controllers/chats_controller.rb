@@ -16,15 +16,16 @@ class ChatsController < ApplicationController
       @room = common_room
     else
       # 共通のルームがない場合、新しいルームを作成しエントリを作成
-      @room = Room.create
+      @room = Room.create(user_id: current_user.id)
+
       Entry.create(user_id: current_user.id, room_id: @room.id)
       Entry.create(user_id: @user.id, room_id: @room.id)
       @entries = @room.entries
       
     end
-      @entries = @room.entries
-      @chats = @room.chats
-      @chat = Chat.new(room_id: @room.id)
+    @entries = @room.entries
+    @chats = @room.chats
+    @chat = Chat.new(room_id: @room.id)
   end
 
   def create

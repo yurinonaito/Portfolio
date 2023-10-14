@@ -18,11 +18,11 @@
         <% if @user.email == 'guest@example.com'%>
           <p>※ゲストユーザーはユーザー情報の編集ができません。</p>
         <% else %>
-          <%= link_to "", users_information_edit_path, class: "fa-solid fa-gear" %>
+          <%= link_to "", users_information_edit_path, class: "fas fa-cog" %>
         <% end %>
-          <%= link_to "", favorites_users_path, class: "fa-solid fa-heart" %>
-          <%= link_to "", room_path(@user), class: "fa-solid fa-envelope" %>
-          <%= link_to "", new_post_path, class: "fa-solid fa-pen-to-square" %>
+          <%= link_to "", favorites_users_path, class: "fas fa-heart" %>
+          <%= link_to "", room_path(@user), class: "far fa-comment-dots" %>
+          <%= link_to "", new_post_path, class: "fas fa-edit" %>
       </li>
       <li>
         follow: <%= @user.followings.count %>

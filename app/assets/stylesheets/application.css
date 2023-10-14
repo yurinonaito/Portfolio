@@ -96,7 +96,7 @@ h1{
   letter-spacing: inherit;
   line-height: inherit;
 }
-.fa-solid{
+.fas,.far,.fab{
   color: black;
 }
 

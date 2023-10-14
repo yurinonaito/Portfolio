@@ -47,9 +47,9 @@
                 <li>|</li>
                 <li><%= link_to "Notice", notifications_path, class:"link" %>
                     <% if current_user.notifications.where(checked: false).exists? %>
-                      <i class="fa-regular fa-bell fa-circle"></i>
+                      <i class="far fa-bell fa-circle"></i>
                     <% else %>
-                      <i class="fa-regular fa-bell"></i>
+                      <i class="far fa-bell"></i>
                     <% end %>
                 </li>
                 <li>|</li>
@@ -77,13 +77,13 @@
       <div class="bottom-nav fixed-bottom">
         <ul class="nav">
           <li class="ml-auto">
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
           </li>
           <li>
-            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
           </li>
           <li>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-twitter-square"></i></a>
           </li>
         </ul>
       </div>
