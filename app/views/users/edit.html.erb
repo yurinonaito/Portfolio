@@ -6,7 +6,7 @@
   </div>
   <div class="row m-3">
     <div class="col-sm-11 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <%= form_with model: @user, url: users_information_path, method: :patch do |f| %>
+      <%= form_with model: @user, url: users_information_path(id: @user), method: :patch do |f| %>
         <%= render "devise/shared/error_messages", resource: @user %>
 
 <div class="form-group">

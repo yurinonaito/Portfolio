@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.all
+    @posts =  Post.where.not(user: User.where(status: "nonreleased"))
   end
 
   def show
