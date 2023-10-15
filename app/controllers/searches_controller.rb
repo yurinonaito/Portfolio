@@ -3,6 +3,9 @@ class SearchesController < ApplicationController
   
   def search
     @range = params[:range]
+    @users = []
+    @posts = []
+    @tag = params[:word]
     
     if @range == "User"
        @users = User.looks(params[:search], params[:word])
@@ -16,10 +19,10 @@ class SearchesController < ApplicationController
        @tag = params[:q]
        hashtag = Hashtag.find_by(hashname: params[:q])
        @posts = hashtag ? hashtag.posts : []
-    else
-       # 検索クエリが提供されなかった場合の処理
-       @posts = []  # 空の配列を代入
-       @tag = "no post"
+    # else
+    #   # 検索クエリが提供されなかった場合の処理
+    #   @posts = []  # 空の配列を代入
+    #   @tag = "no post"
     end
   end
   

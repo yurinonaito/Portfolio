@@ -46,7 +46,7 @@ class Post < ApplicationRecord
     hashtags = self.caption.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
     created_post.hashtags = []
     hashtags.uniq.map do |hashtag|
-    tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
+    tag = Hashtag.find_or_create_by(hashname: hashtag.delete('#'))
     created_post.hashtags << tag
     end
   end
@@ -56,7 +56,7 @@ class Post < ApplicationRecord
     created_post.hashtags.clear
     hashtags = self.caption.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
     hashtags.uniq.map do |hashtag|
-      tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
+      tag = Hashtag.find_or_create_by(hashname: hashtag.delete('#'))
       created_post.hashtags << tag
     end
   end
