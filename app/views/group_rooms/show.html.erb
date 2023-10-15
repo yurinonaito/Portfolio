@@ -2,18 +2,46 @@
   <div class="row m-3">
     <div class="col p-3">
               
-      <h1>GroupChatRooms</h1>
+      <h1>Groupgroup_chatRooms</h1>
         <div class="group_room-show">
-          <div class="show-group_room-chat-back">
-            <span class="group_room-show-group_room-chat-back">
+          <div class="show-group_room-group_chat-back">
+            <span class="group_room-show-group_room-group_chat-back">
             <%= link_to group_rooms_path do %>
               ＜戻る
             <% end %>
             </span>
           </div>
         
-          <div class="chat-group_room-show-talk">
+          <div class="group_chat-group_room-show-talk">
             トーク
+            <div class="group_chats">
+              <div class="group_chat">
+                <% if @group_chats.present? %>
+                  <% @group_chats.each do |group_chat| %>
+                    <div class="group_chat-box">
+                      <div class="group_chat-face">
+                        <%= image_tag group_chat.user.get_icon_image(100,100), class:"icon" %>
+                      </div>
+                      <div class="group_chat-hukidashi"> <strong><%= group_chat.message %></strong> <br>
+                        <%= group_chat.created_at.strftime("%Y-%m-%d %H:%M")%>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+              
+              <div class="errors">
+                <%= render "layouts/errors", obj: @group_chat %>
+              </div>
+              
+              <div class="posts">
+                <%= form_with model: @group_chat, data: {remote: true} do |f| %>
+                  <%= f.text_field :message %>
+                  <%= f.hidden_field :group_room_id, value: params[:id] %>
+                  <%= f.submit "投稿",class: 'form-submit'%>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
         

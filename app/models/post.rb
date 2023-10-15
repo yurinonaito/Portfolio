@@ -11,8 +11,8 @@ class Post < ApplicationRecord
   
   def get_image(width, height)
     unless image.attached?
-      file_path = Rails.root.join('app/assets/images/NoImage.png')
-      image.attach(io: File.open(file_path), filename: 'NoImage.png', content_type: 'image/p')
+      file_path = Rails.root.join('app/assets/images/NoImage.jpg')
+      image.attach(io: File.open(file_path), filename: 'NoImage.jpg', content_type: 'image/jpg')
     end
       image.variant(resize_to_limit: [width, height]).processed
   end
@@ -60,5 +60,10 @@ class Post < ApplicationRecord
       created_post.hashtags << tag
     end
   end
+  
+  validates :caption, presence: true
+  validates :code_url, presence: true
+  validates :post_url, presence: true
+  validates :image, presence: true
   
 end

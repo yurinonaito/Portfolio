@@ -20,10 +20,19 @@ class GroupRoomsController < ApplicationController
         else
             render :new
         end
+        
+    end
+    
+    def groupchat #チャット用
+        @group_chat = current_user.group_chats.new(group_chat_params)
+            render :validater unless @group_chat.save
     end
 
     def show
         @group_room = GroupRoom.find(params[:id])
+        
+        @group_chats = @group_room.group_chats #チャット用
+        @group_chat = GroupChat.new(group_room_id: @group_room.id)
     end
 
     def edit
@@ -53,6 +62,10 @@ class GroupRoomsController < ApplicationController
 
         def group_room_params
             params.require(:group_room).permit(:name, user_ids: [])
+        end
+        
+        def group_chat_params #チャット用
+            params.require(:group_chat).permit(:message, :group_room_id)
         end
 
 end

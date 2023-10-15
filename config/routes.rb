@@ -45,9 +45,9 @@ Rails.application.routes.draw do
   resources :rooms, only: [:show]
   resources :chats, only: [:show, :create]
 
-  resources :group_rooms, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
-    resources :group_chats, only: [:create, :show]
-  end
+  resources :group_rooms, only: [:index, :new, :create, :show, :edit, :update, :destroy] 
+
+  post 'group_rooms/:id', to: 'group_rooms#groupchat', as: 'group_chats'
   
   resources :notifications, only: [:index, :destroy]
   
