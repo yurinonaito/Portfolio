@@ -1,8 +1,8 @@
 class CreateGroupEntries < ActiveRecord::Migration[6.1]
   def change
     create_table :group_entries do |t|
-      t.references :user, null: false, foreign_key: true
-      t.references :group_room, null: false, foreign_key: true
+      t.references :user
+      t.references :group_room
 
       t.timestamps
     end
