@@ -16,7 +16,7 @@
       </td>
       <td>
         <% if comment.user == current_user %>
-          <%= link_to post_comment_path(comment.comment), method: :delete, data: { confirm: "本当に消しますか?" }, class: "button-12", role: "button", style: "margin-top: 2px;" do %>
+          <%= link_to post_comment_path(post_id: post.id, comment_id: comment.id), method: :delete, data: { confirm: "本当に消しますか?" }, class: "button-12", role: "button", style: "margin-top: 2px;" do %>
             <span>delete</span>
           <% end %>
         <% end %>
