@@ -79,7 +79,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :user_name, :telephone_number])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :icon_image, :user_name, :telephone_number])
   end
 
 end
