@@ -51,7 +51,7 @@
                   <li class="nav_item">|</li>
                   <li class="nav_item"><%= link_to "Notice", notifications_path, class:"link" %>
                       <% if current_user.notifications.where(checked: false).exists? %>
-                        <i class="far fa-bell fa-circle"></i>
+                        <i class="far fa-bell bell-color"></i>
                       <% else %>
                         <i class="far fa-bell"></i>
                       <% end %>

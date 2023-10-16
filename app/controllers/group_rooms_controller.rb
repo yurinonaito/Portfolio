@@ -2,7 +2,7 @@ class GroupRoomsController < ApplicationController
   before_action :set_group_room, only: [:edit, :update]
 
     def index
-        @group_room_lists = GroupRoom.all
+        @group_room_lists = GroupRoom.all.page(params[:page]).per(10)
         @group_room_joining = GroupEntry.where(user_id: current_user.id)
         @group_room_lists_none = "グループに参加していません。"
     end
