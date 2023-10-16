@@ -37,35 +37,41 @@
           </div>
         </div>
           <div class="row">
-            <ul class="nav ml-auto">
-              <% if user_signed_in? %>
-                <li><%= link_to "Home", root_path, class:"link" %></li>
-                <li>|</li>
-                <li><%= link_to "Mypage", user_path(current_user.id), class:"link" %></li>
-                <li>|</li>
-                <li><%= link_to "All Post", posts_path, class:"link" %></li>
-                <li>|</li>
-                <li><%= link_to "Notice", notifications_path, class:"link" %>
-                    <% if current_user.notifications.where(checked: false).exists? %>
-                      <i class="far fa-bell fa-circle"></i>
-                    <% else %>
-                      <i class="far fa-bell"></i>
-                    <% end %>
-                </li>
-                <li>|</li>
-                <li><%= link_to "Logout", destroy_user_session_path, class:"link", method: :delete %></li>
-                    &emsp;
-              <% else %>
-                <li><%= link_to "Home", root_path, class:"link" %></li>
-                <li>|</li>
-                <li><%= link_to "Login", user_session_path, class:"link" %></li>
-                <li>|</li>
-                <li><%= link_to 'GestLogin', users_guest_sign_in_path, class:"link", method: :post %></li>
-                <li>|</li>
-                <li><%= link_to "Signup", new_user_registration_path, class:"link" %></li>
-                    &emsp;
-              <% end %>
-            </ul>
+            <div class="nav ml-auto">
+              <input id="drawer_input" class="drawer_hidden" type="checkbox">
+              <label for="drawer_input" class="drawer_open"><span></span></label>
+              <nav class="nav_content">
+                <ul class="nav_list">
+                <% if user_signed_in? %>
+                  <li class="nav_item"><%= link_to "Home", root_path, class:"link" %></li>
+                  <li class="nav_item">|</li>
+                  <li class="nav_item"><%= link_to "Mypage", user_path(current_user.id), class:"link" %></li>
+                  <li class="nav_item">|</li>
+                  <li class="nav_item"><%= link_to "All Post", posts_path, class:"link" %></li>
+                  <li class="nav_item">|</li>
+                  <li class="nav_item"><%= link_to "Notice", notifications_path, class:"link" %>
+                      <% if current_user.notifications.where(checked: false).exists? %>
+                        <i class="far fa-bell fa-circle"></i>
+                      <% else %>
+                        <i class="far fa-bell"></i>
+                      <% end %>
+                  </li>
+                  <li class="nav_item">|</li>
+                  <li class="nav_item"><%= link_to "Logout", destroy_user_session_path, class:"link", method: :delete %></li>
+                      &emsp;
+                <% else %>
+                  <li class="nav_item"><%= link_to "Home", root_path, class:"link" %></li>
+                  <li class="nav_item">|</li>
+                  <li class="nav_item"><%= link_to "Login", user_session_path, class:"link" %></li>
+                  <li class="nav_item">|</li>
+                  <li class="nav_item"><%= link_to 'GestLogin', users_guest_sign_in_path, class:"link", method: :post %></li>
+                  <li class="nav_item">|</li>
+                  <li class="nav_item"><%= link_to "Signup", new_user_registration_path, class:"link" %></li>
+                      &emsp;
+                <% end %>
+                </ul>
+              </nav>
+            </div>
           </div>
       </div>
     </header>

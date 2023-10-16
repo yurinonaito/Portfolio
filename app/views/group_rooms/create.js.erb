@@ -1,0 +1,6 @@
+var groupChatBox = $("<div class='group_chat-box'>");
+var groupChatFace = $("<div class='group_chat-face'>").append($("<img>").attr("src", "<%= j url_for(@group_chat.user.get_icon_image(100, 100)) %>").addClass("icon"));
+var groupChatHukidashi = $("<div class='group_chat-hukidashi'>").html("<strong><%= j @group_chat.message %></strong><br><%= j @group_chat.created_at.strftime("%Y-%m-%d %H:%M") %>");
+groupChatBox.append(groupChatFace, groupChatHukidashi);
+$(".group_chat").append(groupChatBox);
+$('input[type="text"]').val("");

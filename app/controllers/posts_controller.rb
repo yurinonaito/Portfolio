@@ -42,7 +42,7 @@ class PostsController < ApplicationController
        redirect_to post_path(@post.id)
     else
        flash.now[:notice] = "更新に失敗しました。"
-       redirect_to post_path(@post.id)
+       render :edit
     end
   end
   

@@ -1,45 +1,48 @@
 <div class="container">
   <div class="row m-3">
     <div class="col p-3">
-      <h1>GroupRooms#index</h1>
-      <p>Find me in app/views/group_rooms/index.html.erb</p>
+      <h1>GroupRooms</h1>
         <div class="chat-group">
-          <h1>チャットグループ一覧</h1>
-            <div class="group-search">
-              <div class="group-search-form">
-                  <%= form_with url: group_rooms_path do |f| %>
-                    <%= f.text_field :keyword, placeholder: "グループ検索", class: "group-search-form-input" %>
-                    <%= f.submit '検索' %>
-                  <% end %>
-              </div>
+          <h5>チャットグループ一覧</h5>
               
-              <div class="group-new">
-                  <%= link_to 'グループ作成', new_group_room_path %>
-              </div>
-              
+            <div class="group-new">
+                <%= link_to 'グループ作成', new_group_room_path, class: "button-8", role: "button" %>
+            </div>
+            <br>
+            <br>
               <% if @group_room_joining == [] %>
                 <%= @group_room_lists_none %>
               <% else %>
                 <div class="group-list">
-                  <ul class="group-list-table">
+                  <div class="group-list-table">
                     <% @group_room_lists.each do |list| %>
                       <% if list.user_ids.include?(current_user.id) %>
-                  <li class="group-list-table-each-group">
-                        <%= link_to "/group_rooms/#{list.id}" do %>
-                          <%= list.name %>(<%= list.user_ids.count %>)
-                          <%= link_to '編集', edit_group_room_path(list.id), method: :get %>
-                          <%= link_to '削除', "/group_rooms/#{list.id}", method: :delete %>
-                        <% end %>
-                  </li>
-                      <% end %>
+                        <div class="group-list-table-each-group">
+                          <i class="far fa-hand-point-right"></i>
+                          <%= link_to "/group_rooms/#{list.id}",class: "link" do %>
+                            <%= list.name %>(<%= list.user_ids.count %>人)
+                          <% end %>
+                        </div>
+                        <div style="display: inline-block; margin-right: 10px;">
+                          <%= link_to edit_group_room_path(list.id), class: "button-12", role: "button", style: "margin-top: 2px;" do %>
+                            <span>edit</span>
+                          <% end %>
+                          <%= link_to @post, method: :delete, data: { confirm: "本当に消しますか?" }, class: "button-12", role: "button", style: "margin-top: 2px;" do %>
+                            <span>delete</span>
+                          <% end %>
+                        </div>
                     <% end %>
-                  </ul>
+                   <% end %>
+                  </div>
                 </div>
               <% end %>
             </div>
             
+            <br>
+            <br>
+            
             <div class="user-page">
-                <%= link_to 'ユーザーページへ', current_user %>
+                <%= link_to 'マイページへ', current_user %>
             </div>
             
         </div>

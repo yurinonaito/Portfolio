@@ -1,19 +1,24 @@
 <table>
   <tbody>
-    <% post.comments.each do |comment| %>
+    <% post.comments.each do |comment| %> 
     <tr>
       <td>
+        <%= image_tag comment.user.get_icon_image(50,50),class:"icon" %>&emsp;<br>
         <%= link_to user_path(comment.user) do %>
-        <%= image_tag comment.user.get_icon_image(50,50),class:"icon" %><br>
         <%= comment.user.user_name %>
         <% end %>
       </td>
       <td>
-        <%= comment.comment %>
+        <i class="fas fa-caret-right"></i>&emsp;&emsp;
+      </td>
+      <td>
+        <%= simple_format(comment.comment) %> &emsp;&emsp;
       </td>
       <td>
         <% if comment.user == current_user %>
-        <%= link_to "Destroy", post_comment_path(post, comment), method: :delete, class: "btn btn-sm btn-danger float-end" %>
+          <%= link_to post_comment_path(comment.comment), method: :delete, data: { confirm: "本当に消しますか?" }, class: "button-12", role: "button", style: "margin-top: 2px;" do %>
+            <span>delete</span>
+          <% end %>
         <% end %>
       </td>
     </tr>

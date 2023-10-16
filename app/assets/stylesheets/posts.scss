@@ -46,4 +46,6 @@
 .button-container {
   display: flex;
   justify-content: space-between; /* ボタン間のスペースを均等に配置 */
+  border-bottom: dotted 3px black;
 }
+
