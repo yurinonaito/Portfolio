@@ -18,6 +18,10 @@ class User < ApplicationRecord
   has_many :group_rooms, through: :group_entries, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :chats, dependent: :destroy
+  has_many :roomuser_a, class_name: "Room", foreign_key: "user_a_id", dependent: :destroy
+  has_many :roomuser_b, class_name: "Room", foreign_key: "user_b_id", dependent: :destroy
+  has_many :user_a, through: :roomuser_a, source: :user_a
+  has_many :user_b, through: :roomuser_b, source: :user_b
   has_many :rooms, through: :entries, dependent: :destroy
   has_many :notifications, dependent: :destroy
   
@@ -33,6 +37,10 @@ class User < ApplicationRecord
       # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
       # 例えば user_name を入力必須としているならば， user.user_name = "ゲスト" なども必要
     end
+  end
+  
+  def guest?
+    user_name =="gest"
   end
   
   def get_icon_image(width, height)

@@ -73,7 +73,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-        <p id>comment： <%= @post.comments.count %></p>
+        <p id="comment_counter">comment： <%= @post.comments.count %></p>
         <div id="comment_index">
           <%= render "comments/index", post: @post, comment: @comment %>
         </div>
