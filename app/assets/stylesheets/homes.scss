@@ -1,29 +1,7 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-#video-area{
-    position: fixed;
-    z-index: 1;/*最背面に設定*/
-    top: 0;
-    right:0;
-    left:0;
-    bottom:0;
-    overflow: hidden;
-}
 
-#video {
-    /*天地中央配置*/
-    position: absolute;
-    z-index: 1;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /*縦横幅指定*/
-    width: 177.77777778vh; /* 16:9 の幅→16 ÷ 9＝ 177.77% */
-    height: 56.25vw; /* 16:9の幅 → 9 ÷ 16 = 56.25% */
-    min-height: 100%;
-    min-width: 100%;
-}
 h1{
   z-index: 2;
   font-family: 'Playfair Display', serif;
@@ -31,23 +9,57 @@ h1{
   text-shadow: 0 0 15px #666; 
 }
 /*見出し設定*/
+
+.about {
+  width: 100%;
+  margin: 0; 
+  padding: 0; 
+  overflow: visible; 
+  flex: 1;
+  background-color: #B4CFEC;
+}
+
 .main-text{
     /*要素の配置*/
-    position:absolute;
+    position:relative;
     z-index: 2;
-    /*要素を天地中央寄せ*/
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
     /*見た目の調整*/
     font-family: 'Playfair Display', serif;
     color:#fff;
     text-shadow: 0 0 15px #666;
+    margin: 10px 10px 10px 10px;
+    border: 1px solid #0000ff;
+    border-radius: 5px;
+    padding: 5px;
 }
 .text-content {
   text-align: center; /* テキストを中央揃え */
 }
 
+.About_text1{
+  position:relative;
+  top: -500px;
+  left: -100px;
+  color: #1569C7;
+  z-index: 1;
+  font-size: 40px;
+}
+.About_text2{
+  position:relative;
+  top: -350px;
+  left: -100px;
+  color: 	#1569C7;
+  z-index: 1;
+  font-size: 35px;
+}
+.About_text3{
+  position:relative;
+  top: -200px;
+  left: -100px;
+  color: 	#1569C7;
+  z-index: 1;
+  font-size: 30px;
+}
 /*========= レイアウトのためのCSS ===============*/
 
 #container{
@@ -65,3 +77,9 @@ h1{
 .new_posts_icon {
   flex-basis: calc(10% - 10px); /* 幅を調整（要素の数に合わせて調整が必要かもしれません） */
 }
+
+.menu{
+  border-bottom: dotted 3px black;
+}
+
+// 文字アニメーション
