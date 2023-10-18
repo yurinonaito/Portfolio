@@ -18,10 +18,6 @@ class User < ApplicationRecord
   has_many :group_rooms, through: :group_entries, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :chats, dependent: :destroy
-  has_many :roomuser_a, class_name: "Room", foreign_key: "user_a_id", dependent: :destroy
-  has_many :roomuser_b, class_name: "Room", foreign_key: "user_b_id", dependent: :destroy
-  has_many :user_a, through: :roomuser_a, source: :user_a
-  has_many :user_b, through: :roomuser_b, source: :user_b
   has_many :rooms, through: :entries, dependent: :destroy
   has_many :notifications, dependent: :destroy
   
@@ -59,6 +55,11 @@ class User < ApplicationRecord
   # 指定したユーザーをフォローする
   def follow(user)
     active_relationships.create(followed_id: user.id)
+    if mutual_followings.map(&:id).include?(user.id)
+       Room.find_or_create_by(user_id: user.id) do |room|
+         room.user_id = user.id
+       end
+    end
   end
   # 指定したユーザーのフォローを解除する
   def unfollow(user)
