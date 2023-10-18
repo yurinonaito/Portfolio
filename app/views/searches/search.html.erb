@@ -2,10 +2,9 @@
   <div class="row my-3">
     <div class="col">
       <%= render partial: "searchform" %>
-      <h1>Results index</h1>
-      
+      <br>
       <h2>#<%= @tag %></h2>
-      
+      <br
       <table class="table table-hover table-inverse">
         <!--検索対象モデルがUserの時 -->
         <% if @range == "User" %>
