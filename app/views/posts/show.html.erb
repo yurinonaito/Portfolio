@@ -1,11 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <div>
-      <%= flash[:notice] %>
-      </div>
       
-      <h1>Post show</h1>
         <%= image_tag @post.user.get_icon_image(100,100),class:"icon" %>
         <%= link_to @post.user.user_name, user_path(@post.user.id) %>
       <div>
@@ -15,8 +11,6 @@
 
     <div class="col-md-6">
       <div class="post-details">
-        <br>
-        <br>
         <br>
         <p><%= simple_format(render_with_hashtags(@post.caption)) %></p>
       </div>

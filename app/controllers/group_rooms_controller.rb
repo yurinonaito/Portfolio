@@ -42,7 +42,7 @@ class GroupRoomsController < ApplicationController
     def update
         @group_room = GroupRoom.find(params[:id])
         if @group_room.update(group_room_params)
-            redirect_to group_rooms_path, notice: 'グループを更新しました。'
+            redirect_to group_rooms_path, notice: 'Group updated'
         else
             render :edit
         end
@@ -51,7 +51,7 @@ class GroupRoomsController < ApplicationController
     def destroy
         delete_group_room = GroupRoom.find(params[:id])
         if delete_group_room.destroy
-            redirect_to group_rooms_path, notice: 'グループを削除しました。'
+            redirect_to group_rooms_path, notice: 'Group deleted'
         end
     end
 

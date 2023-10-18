@@ -8,10 +8,10 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-       flash[:notice] = "投稿に成功しました。"
+       flash[:notice] = "Successfully"
        redirect_to posts_path
     else
-       flash.now[:notice] = "投稿に失敗しました。"
+       flash.now[:notice] = "Could not post"
        render :new
     end
   end
@@ -38,10 +38,10 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-       flash[:notice] = "更新に成功しました。"
+       flash[:notice] = "Successfully"
        redirect_to post_path(@post.id)
     else
-       flash.now[:notice] = "更新に失敗しました。"
+       flash.now[:notice] = "Could not update"
        render :edit
     end
   end
