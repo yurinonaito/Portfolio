@@ -55,7 +55,7 @@
                   <li>|</li>
                   <li><%= link_to "Notice", notifications_path, class:"link" %>
                       <% if current_user.notifications.where(checked: false).exists? %>
-                        <i class="far fa-bell bell-color"></i>
+                        <i class="fas fa-bell" style="color: 	#FFD801"></i>
                       <% else %>
                         <i class="far fa-bell"></i>
                       <% end %>

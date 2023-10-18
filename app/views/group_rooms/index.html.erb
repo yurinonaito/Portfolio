@@ -3,53 +3,75 @@
     <div class="col p-3">
       <h1>GroupRooms</h1>
         <div class="chat-group">
-          <h5>チャットグループ一覧</h5>
+          <br>
+          <br>
               
-            <div class="group-new">
-                <%= link_to 'グループ作成', new_group_room_path, class: "button-8", role: "button" %>
-            </div>
-            <br>
-            <br>
-              <% if @group_room_joining == [] %>
-                <%= @group_room_lists_none %>
-              <% else %>
-                <div class="group-list">
-                  <div class="group-list-table">
+        <div class="group-new">
+            <%= link_to 'Group + ', new_group_room_path, class: "button-8", role: "button" %>
+        </div>
+        <br>
+        <br>
+          <% if @group_room_joining == [] %>
+          <%= @group_room_lists_none %>
+          <% else %>
+            <div class="group-list">
+              <div class="group-list-table">
+          
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col-8">Group name</th>
+                      <th scope="col-2"></th>
+                      <th scope="col-2"></th>
+                    </tr>
+                  </thead>
+                  
+                  <tbody class="table-group-divider">
                     <% @group_room_lists.each do |list| %>
                       <% if list.user_ids.include?(current_user.id) %>
-                        <div class="group-list-table-each-group">
-                          <i class="far fa-hand-point-right"></i>
+                    <tr>
+                      
+                      <td><i class="fas fa-comments"></i>
                           <%= link_to "/group_rooms/#{list.id}",class: "link" do %>
                             <%= list.name %>(<%= list.user_ids.count %>人)
                           <% end %>
-                        </div>
-                        <div style="display: inline-block; margin-right: 10px;">
-                          <%= link_to edit_group_room_path(list.id), class: "button-12", role: "button", style: "margin-top: 2px;" do %>
+                      </td>
+                      <td>
+                        <%= link_to "/group_rooms/#{list.id}", class: "button-14", role: "button", style: "margin-top: 2px;" do %>
+                            <span>Join</span>
+                          <% end %>
+                      </td>
+                      <td><%= link_to edit_group_room_path(list.id), class: "button-13", role: "button", style: "margin-top: 2px;" do %>
                             <span>edit</span>
                           <% end %>
-                          <%= link_to @post, method: :delete, data: { confirm: "本当に消しますか?" }, class: "button-12", role: "button", style: "margin-top: 2px;" do %>
+                      </td>
+                      <td><%= link_to "/group_rooms/#{list.id}", method: :delete, data: { confirm: "本当に消しますか?" }, class: "button-13", role: "button", style: "margin-top: 2px;" do %>
                             <span>delete</span>
                           <% end %>
-                        </div>
+                      </td>
+                    </tr>
+                      <% end %>
                     <% end %>
-                   <% end %>
-                  </div>
-                </div>
-              <% end %>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            
-            <br>
-            <br>
-            
-            <div>
-              <%= paginate @group_room_lists %>
-            </div>
-            
-            <div class="user-page">
-                <%= link_to 'マイページへ', current_user %>
-            </div>
-            
+          <% end %>  
         </div>
+            
+          <br>
+          <br>
+          
+          <div>
+            <%= paginate @group_room_lists %>
+          </div>
+          
+          <div class="user-page">
+              <%= link_to ' ▷ My Page ', current_user %>
+          </div>
+            
     </div>
   </div>
 </div>
+
+
