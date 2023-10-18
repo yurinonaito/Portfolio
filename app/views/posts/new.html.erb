@@ -1,6 +1,8 @@
 <div class="container">
   <div class="row m-3">
     <div class="col p-3">
+      
+      <%= image_tag current_user.get_icon_image(100,100),class:"icon" %><br
 
       <%= form_with model: @post,url: posts_path do |f| %>
       

@@ -5,7 +5,9 @@
         <div class="chat-group">
           <br>
           <br>
-              
+          <%= image_tag current_user.get_icon_image(100,100),class:"icon" %>
+          <br>
+          <br
         <div class="group-new">
             <%= link_to 'Group + ', new_group_room_path, class: "button-8", role: "button" %>
         </div>
