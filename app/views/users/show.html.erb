@@ -15,14 +15,23 @@
         user_id：<%= @user.id %>
       </li>
       <li>
-        <% if @user.email == 'guest@example.com'%>
+        <% if current_user %>
+        <% if current_user.email == 'guest@example.com' %>
           <p>※ゲストユーザーはユーザー情報の編集ができません。</p>
-        <% else %>
-          <%= link_to "", users_information_edit_path(id: @user), class: "fas fa-cog" %>
-        <% end %>
           <%= link_to "", favorites_users_path, class: "fas fa-heart" %>
           <%= link_to "", room_path(@user), class: "far fa-comment-dots" %>
           <%= link_to "", new_post_path, class: "fas fa-edit" %>
+        <% elsif current_user == @user %>
+          <%= link_to "", users_information_edit_path(id: @user), class: "fas fa-cog" %>
+          <%= link_to "", favorites_users_path, class: "fas fa-heart" %>
+          <%= link_to "", room_path(@user), class: "far fa-comment-dots" %>
+          <%= link_to "", new_post_path, class: "fas fa-edit" %>
+        <% else %>
+          <!-- 他のユーザー向けの表示 -->
+        <% end %>
+      <% else %>
+        <!-- ログインしていないユーザー向けの表示 -->
+      <% end %>
       </li>
       <li>
         follow: <%= @user.followings.count %>

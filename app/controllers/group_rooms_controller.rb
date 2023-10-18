@@ -1,4 +1,5 @@
 class GroupRoomsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_group_room, only: [:edit, :update]
 
     def index
@@ -67,5 +68,6 @@ class GroupRoomsController < ApplicationController
         def group_chat_params #チャット用
             params.require(:group_chat).permit(:message, :group_room_id)
         end
+        
 
 end
