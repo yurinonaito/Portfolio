@@ -10,25 +10,16 @@ h1{
 }
 /*見出し設定*/
 
-.about {
-  width: 100%;
-  margin: 0; 
-  padding: 0; 
-  overflow: visible; 
-  flex: 1;
-  background-color: #B4CFEC;
-}
-
 .main-text{
     /*要素の配置*/
     position:relative;
     z-index: 2;
     /*見た目の調整*/
     font-family: 'Playfair Display', serif;
-    color:#fff;
+    color:#646D7E;
     text-shadow: 0 0 15px #666;
     margin: 10px 10px 10px 10px;
-    border: 1px solid #0000ff;
+    border: 1px solid #E9CFEC;
     border-radius: 5px;
     padding: 5px;
 }
@@ -36,29 +27,10 @@ h1{
   text-align: center; /* テキストを中央揃え */
 }
 
-.About_text1{
+.background_image{
   position:relative;
-  top: -500px;
-  left: -100px;
-  color: #1569C7;
-  z-index: 1;
-  font-size: 40px;
-}
-.About_text2{
-  position:relative;
-  top: -350px;
-  left: -100px;
-  color: 	#1569C7;
-  z-index: 1;
-  font-size: 35px;
-}
-.About_text3{
-  position:relative;
-  top: -200px;
-  left: -100px;
-  color: 	#1569C7;
-  z-index: 1;
-  font-size: 30px;
+  top: -410px;
+  left: 160px;
 }
 /*========= レイアウトのためのCSS ===============*/
 
