@@ -16,7 +16,7 @@
       </li>
       <li>
         <% if current_user %>
-        <% if current_user.email == 'guest@example.com' %>
+        <% if current_user.email == 'guest@example.com' && current_user.email == @user.email %>
           <p>※ゲストユーザーはユーザー情報の編集ができません。</p>
           <%= link_to "", favorites_users_path, class: "fas fa-heart" %>
           <%= link_to "", room_path(@user), class: "far fa-comment-dots" %>

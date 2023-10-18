@@ -1,5 +1,6 @@
 class ChatsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:create]
   before_action :reject_non_related, only: [:show]
   
   
@@ -42,8 +43,15 @@ class ChatsController < ApplicationController
   def reject_non_related
     user = User.find(params[:id])
     unless current_user.following?(user) && user.following?(current_user)
-      redirect_to posts_path
+      redirect_to user_path(user.id), notice: "このユーザーをフォローしていません"
     end
   end
+  
+  def ensure_guest_user
+      if current_user.email == "guest@example.com"
+        redirect_to root_path, notice: "ゲストユーザーはこの機能はご使用いただけません。"
+      end
+  end
+  
 end
 

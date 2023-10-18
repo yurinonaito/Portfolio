@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:new, :edit, :update]
   before_action :is_matching_login_user, only: [:edit, :update]
   
   def new
@@ -77,5 +78,11 @@ class PostsController < ApplicationController
       redirect_to root_path, notice: "You cannot move to other people's screens."
     end
   end
+  
+  def ensure_guest_user
+    if current_user.email == "guest@example.com"
+      redirect_to root_path , notice: "ゲストユーザーはこの機能はご使用いただけません。"
+    end
+  end  
   
 end

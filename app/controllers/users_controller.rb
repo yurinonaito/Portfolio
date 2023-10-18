@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:edit]
   before_action :is_matching_login_user, only: [:edit, :update]
 
   def show
@@ -75,9 +76,17 @@ class UsersController < ApplicationController
     @user = current_user
     favorite_posts = @user.favorites.pluck(:post_id)
     @favorite_posts = Post.where(id: favorite_posts)
+    @favorite_posts_none = "いいね した投稿がありません。"
   end
 
   private
+  
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.email == "guest@example.com"
+      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
+  end  
   
   def is_matching_login_user
     user = User.find(params[:id])
