@@ -273,9 +273,15 @@ h1{
 @media screen and (max-width: 700px) {
   img {
     width: 100%;
-    justify-content: center;
+    margin: 0 auto;
   }
-  .alert{
+  .flash{
     width: 100%;
+    font-size: 13px;
+  }
+  .new_posts_container {
+    display: flex;
+	  flex-wrap: wrap;
+	  flex-basis: calc(10% - 10px); 
   }
 }

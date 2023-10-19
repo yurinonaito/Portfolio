@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   end
   
   def index
-    @posts =  Post.where.not(user: User.where(status: "nonreleased"))
+    @posts =  Post.where.not(user: User.where(status: "nonreleased")).order('id DESC')
   end
 
   def show
@@ -73,8 +73,8 @@ class PostsController < ApplicationController
   end
   
   def is_matching_login_user
-    user = User.find(params[:id])
-    unless user.id == current_user.id
+    post = Post.find(params[:id])
+    unless post.user_id == current_user.id
       redirect_to root_path, notice: "You cannot move to other people's screens."
     end
   end
