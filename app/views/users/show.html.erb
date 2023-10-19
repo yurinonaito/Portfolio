@@ -34,17 +34,17 @@
       <% end %>
       </li>
       <li>
-        follow: <%= @user.followings.count %>
+        <%= link_to "follow", user_followings_path(@user), class: "link" %>:<%= @user.followings.count %>
       <br>
-        follower: <%= @user.followers.count %>
+        <%= link_to "follower", user_followers_path(@user), class: "link" %>:<%= @user.followers.count %>
       </li>
       <li>
-        <%= render "relationships/btn", user: @user, options: { class: "follow-link" } %>
+        <%= render "relationships/btn", user: @user, options: { class: "button-14", role: "button", style: "margin-top: 2px;" } %>
       </li>
     
       <li>
         <% if current_user != @user %>
-          <%= link_to 'chatを始める', chat_path(@user.id)%>
+          <%= link_to 'D M', chat_path(@user.id), class: "button-14", role: "button", style: "margin-top: 2px;" %>
         <% end %>
       </li>
     </ul>

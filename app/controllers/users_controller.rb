@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
   before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :set_user, only: [:followings, :followers]
 
   def show
     @user=User.find(params[:id])
@@ -78,6 +79,15 @@ class UsersController < ApplicationController
     @favorite_posts = Post.where(id: favorite_posts)
     @favorite_posts_none = "いいね した投稿がありません。"
   end
+  
+  
+  def followings
+    @users = @user.followings
+  end
+
+  def followers
+    @users = @user.followers
+  end
 
   private
   
@@ -97,6 +107,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:last_name, :first_name, :user_name, :icon_image, :telephone_number, :email, :password)
+  end
+  
+  def set_user
+    @user = User.find(params[:id])
   end
   
 end
