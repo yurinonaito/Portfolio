@@ -284,4 +284,14 @@ h1{
 	  flex-wrap: wrap;
 	  flex-basis: calc(10% - 10px); 
   }
+  
+  .main-text{
+    width: 100%;
+    font-size: 11px;
+  }
+  .background_image{
+  position:relative;
+  top: -410px;
+  left: 20px;
+  }
 }
