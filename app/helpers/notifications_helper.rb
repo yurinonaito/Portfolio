@@ -7,6 +7,8 @@ module NotificationsHelper
       post_path(notification.subject.post)
     when :followed_me
       user_path(notification.subject.follower)
+    when :chated_to_me
+      room_path(notification.subject.room, anchor: "room-#{notification.subject.id}")
     end
   end
 end
