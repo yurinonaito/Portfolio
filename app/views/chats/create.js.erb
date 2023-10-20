@@ -1,6 +1,10 @@
 var chatBox = $("<div class='chat-box'>");
 var chatFace = $("<div class='chat-face'>").append($("<img>").attr("src", "<%= j url_for(@chat.user.get_icon_image(100, 100)) %>").addClass("icon"));
-var chatHukidashi = $("<div class='chat-hukidashi'>").html("<strong><%= j @chat.content %></strong><br><%= j @chat.created_at.strftime("%Y-%m-%d %H:%M") %>");
+var content = "<%= j @chat.content %>";
+var formattedContent = content.replace(/\n/g, '<br>');
+var timestamp = "<%= j @chat.created_at.strftime("%Y-%m-%d %H:%M") %>";
+var chatHukidashi = $("<div class='chat-hukidashi'>")
+  .html("<strong>" + formattedContent + "</strong><br>" + timestamp);
 chatBox.append(chatFace, chatHukidashi);
 $(".chat").append(chatBox);
-$('input[type=text]').val("")
+$('textarea').val("");

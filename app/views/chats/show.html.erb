@@ -12,7 +12,7 @@
                 <div class="chat-face">
                   <%= image_tag chat.user.get_icon_image(100,100), class:"icon" %>
                 </div>
-                <div class="chat-hukidashi"> <strong><%= chat.content %></strong> <br>
+                <div class="chat-hukidashi"> <strong><%= simple_format(chat.content) %></strong> <br>
                   <%= chat.created_at.strftime("%Y-%m-%d %H:%M")%>
                 </div>
               </div>
@@ -26,9 +26,9 @@
         
         <div class="posts">
           <%= form_with model: @chat, data: {remote: true} do |f| %>
-            <%= f.text_field :content %>
+            <%= f.text_area :content %>
             <%= f.hidden_field :room_id %>
-            <%= f.submit "投稿",class: 'form-submit'%>
+            <%= f.submit "送信", class: "button-14", role: "button", style: "margin-top: 2px;" %>
           <% end %>
         </div>
       </div>

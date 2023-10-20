@@ -35,6 +35,8 @@ class GroupRoomsController < ApplicationController
         
         @group_chats = @group_room.group_chats #チャット用
         @group_chat = GroupChat.new(group_room_id: @group_room.id)
+        
+        @users = @group_room.users
     end
 
     def edit

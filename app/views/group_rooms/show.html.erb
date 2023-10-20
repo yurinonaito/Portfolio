@@ -2,18 +2,25 @@
   <div class="row m-3">
     <div class="col p-3">
               
-      <h1>GroupChatRooms</h1>
         <div class="group_room-show">
           <div class="show-group_room-group_chat-back">
             <span class="group_room-show-group_room-group_chat-back">
-            <%= link_to group_rooms_path do %>
-              ＜戻る
-            <% end %>
+
             </span>
           </div>
         
           <div class="group_chat-group_room-show-talk">
-            トーク
+            <div class="members-list">
+              <h5>members
+                &emsp;
+              <% @users.each do |user| %>
+                <%= image_tag user.get_icon_image(100, 100), class: "icon" %>
+                &emsp;
+              <% end %>
+              </h5>
+            </div>
+            <br>
+          
             <div class="group_chats">
               <div class="group_chat">
                 <% if @group_chats.present? %>
@@ -22,7 +29,7 @@
                       <div class="group_chat-face">
                         <%= image_tag group_chat.user.get_icon_image(100,100), class:"icon" %>
                       </div>
-                      <div class="group_chat-hukidashi"> <strong><%= group_chat.message %></strong> <br>
+                      <div class="group_chat-hukidashi"> <strong><%= simple_format(group_chat.message) %></strong> <br>
                         <%= group_chat.created_at.strftime("%Y-%m-%d %H:%M")%>
                       </div>
                     </div>
@@ -36,9 +43,9 @@
               
               <div class="posts">
                 <%= form_with model: @group_chat, data: {remote: true} do |f| %>
-                  <%= f.text_field :message %>
+                  <%= f.text_area :message %>
                   <%= f.hidden_field :group_room_id, value: params[:id] %>
-                  <%= f.submit "投稿",class: 'form-submit'%>
+                  <%= f.submit "送信", class: "button-14", role: "button", style: "margin-top: 2px;" %>
                 <% end %>
               </div>
             </div>
