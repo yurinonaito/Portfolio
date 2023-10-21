@@ -11,7 +11,7 @@ class Chat < ApplicationRecord
   private
   
   def create_notifications
-    entry = Entry.where.not(user_id: user.id).where(user_id: room.entry_ids).first
+    entry = Entry.where.not(user_id: user.id).where(room_id: room.id).first
     Notification.create(subject: self, user: entry.user, action_type: :chated_to_me)
   end
   
