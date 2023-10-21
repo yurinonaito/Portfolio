@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   def withdraw
     @user = current_user
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
-    @user.update
+    @user.update(is_deleted: true)
     #セッション情報を全て削除
     reset_session
     flash[:notice] = "退会処理を実行いたしました"

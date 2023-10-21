@@ -28,7 +28,7 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
       user.last_name = "ゲスト"
       user.first_name ="ログイン"
-      user.user_name ="gest"
+      user.user_name ="guest"
       user.telephone_number ="090000000000"
       # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
       # 例えば user_name を入力必須としているならば， user.user_name = "ゲスト" なども必要
@@ -36,7 +36,7 @@ class User < ApplicationRecord
   end
   
   def guest?
-    user_name =="gest"
+    user_name =="guest"
   end
   
   def get_icon_image(width, height)
@@ -46,6 +46,12 @@ class User < ApplicationRecord
     end
       icon_image.variant(resize_to_limit: [width, height]).processed
   end
+  
+    # is_deletedがfalseならtrueを返すようにしている
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+
   
   # ユーザーが特定のユーザーにフォローされているかどうかを確認するメソッド
   def followed_by?(other_user)

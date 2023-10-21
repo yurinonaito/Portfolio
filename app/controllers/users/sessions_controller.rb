@@ -56,4 +56,5 @@ class Users::SessionsController < Devise::SessionsController
       ## 【処理内容3】もしパスワードが有効でも削除されていなかったら...何も書く必要はない。
     end
   end
+  
 end
