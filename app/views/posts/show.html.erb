@@ -40,9 +40,9 @@
       <br>
       <br>
       <!--SNS連携ボタンの設置-->
-      <a class="twitter-share-button" href="https://twitter.com/intent/tweet?url={URL}&text={TEXT}">Tweet</a>
+      <a class="twitter-share-button" href="https://twitter.com/intent/tweet?url=<%= request.original_url %>&text=Teach%20me!%20%E3%82%B7%E3%82%A7%E3%82%A2">Tweet</a>
       <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      <div class="line-it-button" data-lang="ja" data-type="share-a" data-env="REAL" data-url="http://35.78.169.164/" data-color="default" data-size="small" data-count="false" data-ver="3" style="display: none;"></div>
+      <div class="line-it-button" data-lang="ja" data-type="share-a" data-env="REAL" data-url="<%= request.original_url %>" data-color="default" data-size="small" data-count="false" data-ver="3" style="display: none;"></div>
       <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
       
     </div>
