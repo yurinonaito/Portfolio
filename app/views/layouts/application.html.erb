@@ -51,7 +51,7 @@
                   <li>|</li>
                   <li><%= link_to "Mypage", user_path(current_user.id), class:"link" %></li>
                   <li>|</li>
-                  <li><%= link_to "All Post", posts_path, class:"link" %></li>
+                  <li><%= link_to "Time line", posts_path, class:"link" %></li>
                   <li>|</li>
                   <li><%= link_to "Notice", notifications_path, class:"link" %>
                       <% if current_user.notifications.where(checked: false).exists? %>

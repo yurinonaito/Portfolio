@@ -41,12 +41,14 @@
                 <%= render "layouts/errors", obj: @group_chat %>
               </div>
               
-              <div class="posts">
-                <%= form_with model: @group_chat, data: {remote: true} do |f| %>
-                  <%= f.text_area :message %>
-                  <%= f.hidden_field :group_room_id, value: params[:id] %>
-                  <%= f.submit "送信", class: "button-14", role: "button", style: "margin-top: 2px;" %>
-                <% end %>
+              <div class="text-right">
+                <div class="posts">
+                  <%= form_with model: @group_chat, data: {remote: true} do |f| %>
+                    <%= f.text_area :message, class: "w-100", rows: 3 %>
+                    <%= f.hidden_field :group_room_id, value: params[:id] %>
+                    <%= f.submit "送信", class: "button-14", role: "button", style: "margin-top: 2px;" %>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>

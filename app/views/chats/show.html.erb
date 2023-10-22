@@ -24,12 +24,14 @@
           <%= render "layouts/errors", obj: @chat %>
         </div>
         
-        <div class="posts">
-          <%= form_with model: @chat, data: {remote: true} do |f| %>
-            <%= f.text_area :content %>
-            <%= f.hidden_field :room_id %>
-            <%= f.submit "送信", class: "button-14", role: "button", style: "margin-top: 2px;" %>
-          <% end %>
+        <div class="text-right">
+          <div class="posts">
+            <%= form_with model: @chat, data: {remote: true} do |f| %>
+              <%= f.text_area :content, class: "w-100", rows: 3 %>
+              <%= f.hidden_field :room_id %>
+              <%= f.submit "送信", class: "button-14", role: "button", style: "margin-top: 2px;" %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

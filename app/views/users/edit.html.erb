@@ -63,16 +63,16 @@
     </div>
     <div class="col mt-2 mr-1">
       <% if @user.released? %>
-        <%= link_to '非公開',nonrelease_user_path(@user), method: :patch%>
+        <%= link_to '非公開',nonrelease_user_path(@user), method: :patch, class: "link" %>
         <i class="fas fa-lock"></i>
       <% else %>
-        <%= link_to '公開',release_user_path(@user), method: :patch%>
+        <%= link_to '公開',release_user_path(@user), method: :patch, class: "link" %>
         <i class="fas fa-unlock"></i>
       <% end %>
     </div>
     
     <div class="col mt-2 mr-1">
-      <%= link_to '退会', users_confirm_withdraw_path %>
+      <%= link_to '退会', users_confirm_withdraw_path, class: "link" %>
     </div>
   </div>
   

@@ -2,14 +2,17 @@
   <div class="row m-3">
     <div class="col p-3">
       <h5>Followings List  〈 <%= @users.count %> 〉</h5><br/>
-      <% @users.each do |user| %>
-        <%= image_tag user.get_icon_image(100,100),class:"icon" %>
-        &emsp;
-        <%= user.user_name %>
-        &emsp;
-        &emsp;
-        <%= link_to "Look", user_path(user.id), class: "button-14", role: "button", style: "margin-top: 2px;" %>
-      <% end %>
+      <div class="row">
+        <% @users.each do |user| %>
+          <div class="col-md-4 mb-3">
+            <%= image_tag user.get_icon_image(100,100), class: "icon" %>
+            <br>
+            <%= user.user_name %>
+            <br>
+            <%= link_to "Look", user_path(user.id), class: "button-14", role: "button", style: "margin-top: 2px;" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

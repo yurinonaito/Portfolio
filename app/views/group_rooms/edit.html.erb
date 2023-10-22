@@ -1,15 +1,19 @@
 <div class="container">
   <div class="row m-3">
     <div class="col p-3">      
-      <h1>グループ編集</h1>
+      <h5>Edit</h5>
       <%= form_with(model: @group_room, local: true) do |f| %>
         <div class="group_room-new-form">
           <div class="gtoup_room-new-form-name">
+            <br>
             <%= f.label :name, 'グループ名' %>
+            <br>
             <%= f.text_field :name, class: 'form-control' %>
-            <%= f.collection_check_boxes :user_ids, User.all, :id, :user_name %>
+            <br>
+            <%= f.collection_check_boxes :user_ids, User.where.not(user_name: 'guest'), :id, :user_name %>
+            <br>
           </div>
-            <%= f.submit '更新', class: "btn btn-primary" %>
+            <%= f.submit '更新', class: "button-14", role: "button", style: "margin-top: 2px;" %>
         </div>
       <% end %>
     </div>

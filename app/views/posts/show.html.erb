@@ -11,7 +11,9 @@
 
     <div class="col-md-6">
       <div class="post-details">
-        <br>
+      <div style="text-align: center;">
+        <p>-----------------------------------------------------------------------------------------</p>
+      </div>
         <p><%= simple_format(render_with_hashtags(@post.caption)) %></p>
       </div>
       
@@ -27,8 +29,12 @@
           </div>
         <% end %>
       </div>
+      <div style="text-align: center;">
+        <p>-----------------------------------------------------------------------------------------</p>
+      </div>
       <br>
-      <%= link_to @post.post_url do %>
+      <i class="far fa-paper-plane"></i>
+      <%= link_to @post.post_url, class: "link" do %>
         <span>Check the Web</span>
       <% end %>
       <br>
@@ -54,7 +60,7 @@
           </div>
           <div class="teachme-button">
             <%= link_to teachme_post_path(@post),method: :post, class: "button-8", role: "button" do %>
-            <span>Teachme!</span>
+            <span>Teach me!</span>
             <% end %>
             <i class="fas fa-eye"></i>
             <span class="teachme-count"><%= @post.teachmes_count %></span>
