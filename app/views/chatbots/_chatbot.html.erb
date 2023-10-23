@@ -1,20 +1,20 @@
-
-        <h5 class="title" id="chat-title">チャットボット</h5>
-        
-      <div class="chat__body">
-        <div id="chat-messages" class="chat__messages" style="height: 400px; max-height: 400px; overflow-y: scroll;">
-          <%# Controllerからくるデータがメッセージで表示される部分。 scriptの`$('#chat-messages').prepend(responseMessage, inputMessage);`部分 %>
-        </div>
-        <form id="chat-form" class="chat__form">
-          <input type="text" class="form-control chat__input" id="chat-input" placeholder="聞きたい内容を入力してください。">
+<h5 class="title" id="chat-title">チャットボット</h5>
+　　<div class="chat__body">
+      <div id="chat-messages" class="chat__messages">
+        <%# Controllerからくるデータがメッセージで表示される部分。 scriptの`$('#chat-messages').prepend(responseMessage, inputMessage);`部分 %>
+      </div>
+      
+      <form id="chat-form" class="chat__form">
+        <input type="text" class="form-control chat__input" id="chat-input" placeholder="聞きたい内容を入力してください。">
           <div class="input-group-append">
             <button type="submit" id="chat-btn" class="chat__submit">send</button>
-            <div class="spinner-border text-primary d-none" id="chat-loader" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
+              <div class="spinner-border text-primary d-none" id="chat-loader" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
           </div>
-        </form>
-      </div>
+      </form>
+    </div>
+    
 <script>
   $(document).ready(function () {
       $('#chat-form').submit(function (event) {
@@ -67,3 +67,4 @@
       });
   });
 </script>
+

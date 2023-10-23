@@ -1,18 +1,27 @@
 <div class="container">
   <div class="row m-3">
-    <div class="col p-3"><h1>Favorite list</h1>
+    <div class="col p-3">
+      <h1>Favorite list</h1>
       
       <% if @favorite_posts == [] %>
       <%= @favorite_posts_none %>
       <% end %>
       
       <% if @favorite_posts.present? %>
-        <% @favorite_posts.each do |post| %>
-        　<%= link_to post_path(post.id) do %>
-          　<%= image_tag post.get_image(350,350) %>
-          <% end %>
-        <% end %>
+        <table class="table table-hover table-inverse">
+          <tbody>
+            <% @favorite_posts.each do |post| %>
+            <tr>
+              <td><%= link_to post_path(post.id) do %>
+                    <%= image_tag post.get_image(300,300) %>
+                  <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
       <% end %>
+      
     </div>
   </div>
 </div>
