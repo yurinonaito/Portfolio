@@ -1,0 +1,78 @@
+// Place all the styles related to the chatbots controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.chat {
+  &__body {
+    padding: 32px;
+    box-sizing: border-box;
+  }
+
+
+  &__form {
+    display: flex;
+  }
+
+  &__input {
+    height: 42px;
+    margin-right: 16px;
+  }
+
+  &__submit {
+    width: 58px;
+    height: 42px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-color: #6495ED;
+    color: white;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    font-size: 14px;
+  }
+
+  &__messages {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 16px 0;
+    height: 400px;/* 初期の高さ */
+    max-height: none;/* 最大高さの制限を解除 */
+    overflow-y: scroll;/* スクロール可能にする */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+  }
+
+  &__message {
+    display: flex;
+    max-width: 80%;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-bottom: 16px;
+
+    &--user {
+      justify-content: flex-end;
+      align-self: flex-end;
+    }
+
+    &--bot {
+      justify-content: flex-start;
+      align-self: flex-start;
+      color: #696969;
+    }
+
+    // text
+    > p {
+      margin: 0;
+    }
+  }
+
+  &__bot-icon {
+    font-size: 1.2rem;
+    margin-right: 12px;
+  }
+}

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
   get 'favicon.ico', to: proc { [204, {}, ['']] }
   get 'homes/about'
+  get 'homes/chatbot'
 
   get 'users/information/edit' => 'users#edit'
   patch 'users/information' => 'users#update'
@@ -21,6 +22,9 @@ Rails.application.routes.draw do
   
   get 'searches/search'
   get '/post/hashtag/:name', to: "posts#hashtag"
+  
+  post "/chatbots", to: "chatbots#create"
+  
   
   resources :users, only:[:show, :edit, :index, :update] do
     resource :relationships, only: [:create, :destroy]
@@ -50,5 +54,6 @@ Rails.application.routes.draw do
   post 'group_rooms/:id', to: 'group_rooms#groupchat', as: 'group_chats'
   
   resources :notifications, only: [:index, :destroy]
+  
   
 end
