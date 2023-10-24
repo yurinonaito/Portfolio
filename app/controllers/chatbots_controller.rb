@@ -15,12 +15,13 @@ class ChatbotsController < ApplicationController
         # user: UserのChat
         # assistant: BotのChat
         # 最初の{role: "system", content: "内容"}で返信するボットちゃんの設定をした。設定の内容はcontentに書く。
+        # max_tokensで回答の文字数の制限をしている
         messages: [
           { role: "system", content: "You are a helpful assistant. response to japanese" },
           { role: "user", content: input },
         ], # Required.
         temperature: 0.7,
-        max_tokens: 200,
+        max_tokens: 1000,
       },
     )
 
