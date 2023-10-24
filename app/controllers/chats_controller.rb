@@ -33,7 +33,7 @@ class ChatsController < ApplicationController
 
   def create
     @chat = current_user.chats.new(chat_params)
-    render :validater unless @chat.save 　
+    render :validater unless @chat.save
     #チャットの保存に失敗した場合に限りバリデーションを返す
   end
   
