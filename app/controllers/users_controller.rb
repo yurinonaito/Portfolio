@@ -8,8 +8,8 @@ class UsersController < ApplicationController
     @user=User.find(params[:id])
     @posts = @user.posts.order('id DESC')
     
-    favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)  # ログイン中のユーザーのお気に入りのpost_idカラムを取得
-    @favorite_list = Post.find(favorites)     # postsテーブルから、お気に入り登録済みのレコードを取得
+    favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)  
+    @favorite_list = Post.find(favorites) 
     
     @current_entry = Entry.where(user_id: current_user.id)
     @another_entry = Entry.where(user_id: @user.id)
@@ -19,8 +19,8 @@ class UsersController < ApplicationController
              
              @another_entry.each do |another|
               if current.room_id == another.room_id
-                     @is_room = true
-                     @room_id = current.room_id
+                   @is_room = true
+                   @room_id = current.room_id
               end
              end
              
@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     end
     end
   end
+  
 
   def edit
     @user = current_user
@@ -39,6 +40,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
+    
     if @user.update(user_params)
        flash[:notice] = "変更を保存しました"
        redirect_to user_path(current_user.id)
@@ -88,6 +90,7 @@ class UsersController < ApplicationController
   def followers
     @users = @user.followers
   end
+  
 
   private
   

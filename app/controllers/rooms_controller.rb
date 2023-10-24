@@ -6,7 +6,7 @@ class RoomsController < ApplicationController
   end
 
   def show
-    
+    # 相互フォロー一覧を取得
     @mutual_followings = current_user.mutual_followings
   end
 end

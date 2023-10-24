@@ -11,18 +11,15 @@ class SearchesController < ApplicationController
        @users = User.looks(params[:search], params[:word])
     else
        @posts = Post.where("caption LIKE ?", "%#{params[:word]}%")
+       # キャプション（caption）が指定のキーワードを含む投稿を検索
     end
   
-    
+       # ハッシュタグ検索
     if params[:q].present? && !params[:q].empty?
        # 検索クエリが提供された場合の処理
        @tag = params[:q]
        hashtag = Hashtag.find_by(hashname: params[:q])
        @posts = hashtag ? hashtag.posts : []
-    # else
-    #   # 検索クエリが提供されなかった場合の処理
-    #   @posts = []  # 空の配列を代入
-    #   @tag = "no post"
     end
   end
   

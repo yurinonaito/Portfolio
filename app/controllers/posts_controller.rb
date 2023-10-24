@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    
     if @post.save
        flash[:notice] = "Successfully"
        redirect_to posts_path
@@ -19,18 +20,22 @@ class PostsController < ApplicationController
     end
   end
   
+  
   def index
     @posts =  Post.where.not(user: User.where(status: "nonreleased")).order('id DESC')
   end
+  
 
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
   end
+  
 
   def edit
     @post = Post.find(params[:id])
   end
+  
   
   def destroy
     post = Post.find(params[:id])
@@ -38,8 +43,10 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
   
+  
   def update
     @post = Post.find(params[:id])
+    
     if @post.update(post_params)
        flash[:notice] = "Successfully"
        redirect_to post_path(@post.id)
@@ -57,7 +64,7 @@ class PostsController < ApplicationController
   
   
   def teachme
-    @post = Post.find(params[:id]) # 対応する投稿を取得
+    @post = Post.find(params[:id])
 
     if @post
       # Teachme カウントを増加
@@ -65,6 +72,7 @@ class PostsController < ApplicationController
     end
       redirect_to @post.code_url
   end
+  
   
   private
 
@@ -74,14 +82,15 @@ class PostsController < ApplicationController
   
   def is_matching_login_user
     post = Post.find(params[:id])
+    
     unless post.user_id == current_user.id
-      redirect_to root_path, notice: "You cannot move to other people's screens."
+           redirect_to root_path, notice: "You cannot move to other people's screens."
     end
   end
   
   def ensure_guest_user
     if current_user.email == "guest@example.com"
-      redirect_to root_path , notice: "ゲストユーザーはこの機能はご使用いただけません。"
+       redirect_to root_path , notice: "ゲストユーザーはこの機能はご使用いただけません。"
     end
   end  
   

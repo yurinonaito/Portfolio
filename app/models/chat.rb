@@ -11,6 +11,7 @@ class Chat < ApplicationRecord
   private
   
   def create_notifications
+    # ルームにエントリーしている自分以外のユーザーに通知を
     entry = Entry.where.not(user_id: user.id).where(room_id: room.id).first
     Notification.create(subject: self, user: entry.user, action_type: :chated_to_me)
   end

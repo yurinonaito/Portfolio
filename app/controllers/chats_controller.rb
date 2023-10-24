@@ -11,6 +11,7 @@ class ChatsController < ApplicationController
     user_entries = @user.entries
   
     # 共通のルームIDを探します
+    # &. = オブジェクト（first）がnilである場合にもエラーを発生させずに安全にアクセスするためのセーフナビゲーション演算子
     common_room = current_user_entries.joins(:room).where(rooms: { id: user_entries.pluck(:room_id) }).first&.room
 
   
@@ -23,8 +24,8 @@ class ChatsController < ApplicationController
       Entry.create(user_id: current_user.id, room_id: @room.id)
       Entry.create(user_id: @user.id, room_id: @room.id)
       @entries = @room.entries
-      
     end
+    
     @entries = @room.entries
     @chats = @room.chats
     @chat = Chat.new(room_id: @room.id)
@@ -32,10 +33,13 @@ class ChatsController < ApplicationController
 
   def create
     @chat = current_user.chats.new(chat_params)
-    render :validater unless @chat.save
+    render :validater unless @chat.save 　
+    #チャットの保存に失敗した場合に限りバリデーションを返す
   end
+  
 
   private
+  
   def chat_params
     params.require(:chat).permit(:content, :room_id)
   end
@@ -43,14 +47,14 @@ class ChatsController < ApplicationController
   def reject_non_related
     user = User.find(params[:id])
     unless current_user.following?(user) && user.following?(current_user)
-      redirect_to user_path(user.id), notice: "相互フォローになるとDMがご使用いただけます"
+        redirect_to user_path(user.id), notice: "相互フォローになるとDMがご使用いただけます"
     end
   end
   
   def ensure_guest_user
-      if current_user.email == "guest@example.com"
-        redirect_to root_path, notice: "ゲストユーザーはこの機能はご使用いただけません。"
-      end
+    if current_user.email == "guest@example.com"
+      redirect_to root_path, notice: "ゲストユーザーはこの機能はご使用いただけません。"
+    end
   end
   
 end

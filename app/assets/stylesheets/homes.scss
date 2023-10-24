@@ -8,7 +8,6 @@ h1{
   color:#fff;
   text-shadow: 0 0 15px #666; 
 }
-/*見出し設定*/
 
 .main-text{
     /*要素の配置*/
@@ -32,7 +31,6 @@ h1{
   top: -410px;
   left: 160px;
 }
-/*========= レイアウトのためのCSS ===============*/
 
 #container{
   background:#fff;
@@ -47,7 +45,7 @@ h1{
 }
 
 .new_posts_icon {
-  flex-basis: calc(10% - 10px); /* 幅を調整（要素の数に合わせて調整が必要かもしれません） */
+  flex-basis: calc(10% - 10px); /* 幅を調整 */
 }
 
 .menu{

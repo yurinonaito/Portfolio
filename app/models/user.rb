@@ -30,8 +30,6 @@ class User < ApplicationRecord
       user.first_name ="ログイン"
       user.user_name ="guest"
       user.telephone_number ="090000000000"
-      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
-      # 例えば user_name を入力必須としているならば， user.user_name = "ゲスト" なども必要
     end
   end
   
@@ -67,10 +65,12 @@ class User < ApplicationRecord
        end
     end
   end
+  
   # 指定したユーザーのフォローを解除する
   def unfollow(user)
     active_relationships.find_by(followed_id: user.id).destroy
   end
+  
   # 指定したユーザーをフォローしているかどうかを判定
   def following?(user)
     followings.include?(user)
@@ -112,7 +112,7 @@ class User < ApplicationRecord
       all
     end
   end
-  
+  # 公開非公開のステータス
   enum status:{nonreleased: 0, released: 1}
   
 end

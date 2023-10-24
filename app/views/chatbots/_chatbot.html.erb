@@ -31,13 +31,12 @@
           // /chatbots (routes.rbに記述)
           // inputはcontroller.rbに記述）
           $.post('/chatbots', {input: input})
-              // controllerで成功した時はこちにくる
+              // controllerで成功した時はこっちにくる
               // data.responseにはcontrollerのactionでreturn jsonするところに記述してるデータが入る。
               .done(function (data) {
                   //     respond_to do |format|
                   //       format.json { render json: { response: response.dig("choices", 0, "message", "content") } }
                   //     end
-                  // responseは結局content!
                   const response = data.response;
                   // controllerのactionから来たデータを利用してtagを作る
                   const responseMessage = '<div class="chat__message chat__message--bot"><i class="fas fa-robot chat__bot-icon"></i><p class="alert alert-success" role="alert">' + response + '</p></div>';
@@ -52,7 +51,7 @@
                   // ボタンを表示する
                   $('#chat-btn').removeClass('d-none');
               })
-              // controllerで失敗した時はこちにくる
+              // controllerで失敗した時はこっちにくる
               .fail(function (xhr, status, error) {
                   console.log("Error:", error)
                   // Display input and response in chat-messages div

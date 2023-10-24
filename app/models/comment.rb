@@ -7,9 +7,10 @@ class Comment < ApplicationRecord
   after_create_commit :create_notifications
 
   private
+  
   def create_notifications
     Notification.create(subject: self, user: post.user, action_type: :commented_to_own_post)
   end
   
-  validates :comment, presence: true #空のコメントが保存されないようバリデーション
+  validates :comment, presence: true
 end

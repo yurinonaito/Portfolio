@@ -21,9 +21,9 @@ class CommentsController < ApplicationController
   end
   
   def ensure_guest_user
-      if current_user.email == "guest@example.com"
-        redirect_to root_path , notice: "ゲストユーザーはこの機能はご使用いただけません。"
-      end
+    if current_user.email == "guest@example.com"
+      redirect_to root_path , notice: "ゲストユーザーはこの機能はご使用いただけません。"
+    end
   end
   
 end

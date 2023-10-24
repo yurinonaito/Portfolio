@@ -11,29 +11,29 @@ class GroupRoomsController < ApplicationController
 
     
     def new
-      @group_room = GroupRoom.new
-      @group_room.group_entries.build(user: current_user)
+        @group_room = GroupRoom.new
+        @group_room.group_entries.build(user: current_user)
     end
 
     def create
         @group_room = GroupRoom.new(group_room_params)
-        if @group_room.save
-            redirect_to group_rooms_path, notice: 'グループを作成しました。'
-        else
-            render :new
-        end
         
+          if @group_room.save
+              redirect_to group_rooms_path, notice: 'グループを作成しました。'
+          else
+              render :new
+          end
     end
     
-    def groupchat #チャット用
+    def groupchat
         @group_chat = current_user.group_chats.new(group_chat_params)
-            render :validater unless @group_chat.save
+          render :validater unless @group_chat.save
     end
 
     def show
         @group_room = GroupRoom.find(params[:id])
         
-        @group_chats = @group_room.group_chats #チャット用
+        @group_chats = @group_room.group_chats 
         @group_chat = GroupChat.new(group_room_id: @group_room.id)
         
         @users = @group_room.users
@@ -45,38 +45,41 @@ class GroupRoomsController < ApplicationController
 
     def update
         @group_room = GroupRoom.find(params[:id])
-        if @group_room.update(group_room_params)
-            redirect_to group_rooms_path, notice: 'Group updated'
-        else
-            render :edit
-        end
+        
+          if @group_room.update(group_room_params)
+              redirect_to group_rooms_path, notice: 'Group updated'
+          else
+              render :edit
+          end
     end
 
     def destroy
         delete_group_room = GroupRoom.find(params[:id])
+        
         if delete_group_room.destroy
             redirect_to group_rooms_path, notice: 'Group deleted'
         end
     end
 
     private
-        def set_group_room
-            @group_room = GroupRoom.find(params[:id])
-        end
+    
+    def set_group_room
+        @group_room = GroupRoom.find(params[:id])
+    end
 
-        def group_room_params
-            params.require(:group_room).permit(:name, user_ids: [])
+    def group_room_params
+        params.require(:group_room).permit(:name, user_ids: [])
+    end
+    
+    def group_chat_params
+        params.require(:group_chat).permit(:message, :group_room_id)
+    end
+    
+    def ensure_guest_user
+        if current_user.email == "guest@example.com"
+            redirect_to root_path , notice: "ゲストユーザーはこの機能はご使用いただけません。"
         end
-        
-        def group_chat_params #チャット用
-            params.require(:group_chat).permit(:message, :group_room_id)
-        end
-        
-        def ensure_guest_user
-            if current_user.email == "guest@example.com"
-              redirect_to root_path , notice: "ゲストユーザーはこの機能はご使用いただけません。"
-            end
-        end  
-        
+    end  
+    
 
 end
