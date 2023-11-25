@@ -79,7 +79,7 @@ class PostsController < ApplicationController
   end
   
   def is_matching_login_user
-    unless post.user_id == current_user.id
+    unless @post.user_id == current_user.id
            redirect_to root_path, notice: "You cannot move to other people's screens."
     end
   end
