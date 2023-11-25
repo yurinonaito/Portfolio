@@ -11,7 +11,9 @@ class CommentsController < ApplicationController
   
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
+    if @comment.present?
+       @comment.destroy
+    end
   end
   
   private
@@ -25,5 +27,6 @@ class CommentsController < ApplicationController
       redirect_to root_path , notice: "ゲストユーザーはこの機能はご使用いただけません。"
     end
   end
+  
   
 end

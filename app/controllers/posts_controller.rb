@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:new, :edit, :update]
-  before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :set_post, only: [:show, :edit, :update, :teachme, :destroy, :is_matching_login_user]
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   
   def new
     @post = Post.new
@@ -27,26 +28,21 @@ class PostsController < ApplicationController
   
 
   def show
-    @post = Post.find(params[:id])
     @comment = Comment.new
   end
   
 
   def edit
-    @post = Post.find(params[:id])
   end
   
   
   def destroy
-    post = Post.find(params[:id])
-    post.destroy
+    @post.destroy
     redirect_to posts_path
   end
   
   
   def update
-    @post = Post.find(params[:id])
-    
     if @post.update(post_params)
        flash[:notice] = "Successfully"
        redirect_to post_path(@post.id)
@@ -64,8 +60,6 @@ class PostsController < ApplicationController
   
   
   def teachme
-    @post = Post.find(params[:id])
-
     if @post
       # Teachme カウントを増加
       @post.increment!(:teachmes_count)
@@ -80,9 +74,11 @@ class PostsController < ApplicationController
     params.require(:post).permit(:caption, :image, :post_url, :code_url)
   end
   
+  def set_post
+    @post = Post.find(params[:id])
+  end
+  
   def is_matching_login_user
-    post = Post.find(params[:id])
-    
     unless post.user_id == current_user.id
            redirect_to root_path, notice: "You cannot move to other people's screens."
     end

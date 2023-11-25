@@ -8,9 +8,9 @@ class SearchesController < ApplicationController
     @tag = params[:word]
     
     if @range == "User"
-       @users = User.looks(params[:search], params[:word])
+       @users = User.looks(params[:search], params[:word]).where.not(status: "nonreleased")
     else
-       @posts = Post.where("caption LIKE ?", "%#{params[:word]}%")
+       @posts = Post.where("caption LIKE ?", "%#{params[:word]}%").where.not(user: User.where(status: "nonreleased"))
        # キャプション（caption）が指定のキーワードを含む投稿を検索
     end
   

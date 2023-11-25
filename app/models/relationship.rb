@@ -3,8 +3,9 @@ class Relationship < ApplicationRecord
   belongs_to :followed, class_name: "User"
   
   has_one :notification, as: :subject, dependent: :destroy
-
+  validates_uniqueness_of :follower_id, scope: :followed_id
   after_create_commit :create_notifications
+  
 
   private
   
